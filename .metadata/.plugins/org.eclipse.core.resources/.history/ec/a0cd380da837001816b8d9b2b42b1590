@@ -1,0 +1,30 @@
+/*
+ * I2c_Ctrl.c
+ *
+ *  Created on: 03/04/2018
+ *      Author: jpone
+ */
+
+#include "I2c_Ctrl.h"
+#include "../PinDefinition.h"
+
+void I2c_Ctrl_Init(void)
+{
+	PINSEL_CFG_Type PinCfg;
+
+	/* Initialize I2C2 pin connect */
+	PinCfg.Funcnum = PIN_DEFINITION_I2C_SDA_FUNC_NUM;
+	PinCfg.Pinnum = PIN_DEFINITION_I2C_SDA_PIN_NUM;
+	PinCfg.Portnum = PIN_DEFINITION_I2C_SDA_PORT_NUM;
+	PINSEL_ConfigPin(&PinCfg);
+	PinCfg.Funcnum = PIN_DEFINITION_I2C_SCL_FUNC_NUM;
+	PinCfg.Pinnum = PIN_DEFINITION_I2C_SCL_PIN_NUM;
+	PinCfg.Portnum = PIN_DEFINITION_I2C_SCL_PORT_NUM;
+	PINSEL_ConfigPin(&PinCfg);
+
+	// Initialize I2C peripheral
+	I2C_Init(I2Cx, CLOCK_RATE);
+
+	/* Enable I2C1 operation */
+	I2C_Cmd(I2Cx, ENABLE);
+}

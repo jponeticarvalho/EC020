@@ -1,0 +1,7 @@
+output/
+*.d
+*.o
+firmware_src/Lib_CMSISv1p30_LPC17xx/Debug/
+firmware_src/Lib_EaBaseBoard/Debug/
+firmware_src/Lib_MCU/Debug/
+firmware_src/demo/Debug

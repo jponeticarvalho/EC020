@@ -1,0 +1,93 @@
+/*
+ * Display_Ctrl.c
+ *
+ *  Created on: 03/04/2018
+ *      Author: jpone
+ */
+
+#include "Display_Ctrl.h"
+
+static enum
+{
+	CMMD_WAIT = 0,
+	CMMD_READING,
+	CMMD_CLEAR,
+	CMMD_WRITETEMP,
+	CMMD_WRITELIGHT,
+} enum_commandState;
+
+static uint32_t uiSensorValue;
+
+void Display_Ctrl_Init(void)
+{
+	I2c_Ctrl_Init();
+	Ssp_Ctrl_Init();
+	Light_Ctrl_Init();
+//	Temp_Ctrl_Init();
+	Oled_Ctrl_Init();
+
+
+	Oled_Ctrl_ClearScreen(OLED_COLOR_BLACK);
+//	Oled_Ctrl_PutString(1,  1,(uint8_t *)"---------------",OLED_COLOR_WHITE, OLED_COLOR_BLACK);
+//	Oled_Ctrl_PutString(1,  9,(uint8_t *)"|    EC020:   |",OLED_COLOR_WHITE, OLED_COLOR_BLACK);
+//	Oled_Ctrl_PutString(1, 17,(uint8_t *)"|Fer Avelar,  |",OLED_COLOR_WHITE, OLED_COLOR_BLACK);
+//	Oled_Ctrl_PutString(1, 25,(uint8_t *)"|Joao Pedro,  |",OLED_COLOR_WHITE, OLED_COLOR_BLACK);
+//	Oled_Ctrl_PutString(1, 33,(uint8_t *)"|Karla,       |",OLED_COLOR_WHITE, OLED_COLOR_BLACK);
+//	Oled_Ctrl_PutString(1, 41,(uint8_t *)"|Lucas Gaspar.|",OLED_COLOR_WHITE, OLED_COLOR_BLACK);
+//	Oled_Ctrl_PutString(1, 49,(uint8_t *)"---------------",OLED_COLOR_WHITE, OLED_COLOR_BLACK);
+
+	ttag_screenStrings tagScreenStrings;
+	uint8_t msg[20];
+
+	strcpy(msg, (const char*)'Olá Guilherme!!');
+
+	strncpy(tagScreenStrings.screenString_Line1,(const char*)msg,strlen(msg));
+	strncpy(tagScreenStrings.screenString_Line2,(const char*)msg,strlen(msg));
+	strncpy(tagScreenStrings.screenString_Line3,(const char*)msg,strlen(msg));
+	strncpy(tagScreenStrings.screenString_Line4,(const char*)msg,strlen(msg));
+	strncpy(tagScreenStrings.screenString_Line5,(const char*)msg,strlen(msg));
+	strncpy(tagScreenStrings.screenString_Line6,(const char*)msg,strlen(msg));
+	strncpy((char*)tagScreenStrings.screenString_Line7,(const char*)msg,strlen(msg));
+
+	Oled_Ctrl_PutScreen(tagScreenStrings, OLED_COLOR_WHITE, OLED_COLOR_BLACK);
+
+	enum_commandState = CMMD_WAIT;
+	uiSensorValue = 0;
+
+}
+
+void Display_Ctrl_ProcessLoop()
+{
+
+	switch (enum_commandState) {
+		case CMMD_WAIT:
+			if(Display_State_Get() == DISPLAY_STATE_WAINTING)
+				Oled_Ctrl_ClearScreen(OLED_COLOR_BLACK);
+			else
+				enum_commandState = CMMD_READING;
+			break;
+
+		case CMMD_READING:
+			if(Display_State_Get() == DISPLAY_STATE_LIGHT)
+			{
+				uiSensorValue = Light_Ctrl_Read();
+				enum_commandState = CMMD_WRITELIGHT;
+			}
+			else if(Display_State_Get() == DISPLAY_STATE_TEMP)
+			{
+				uiSensorValue = Temp_Ctrl_Read();
+				enum_commandState = CMMD_WRITETEMP;
+			}
+			break;
+
+		case CMMD_WRITELIGHT:
+
+			break;
+
+		case CMMD_WRITETEMP:
+
+			break;
+
+	}
+
+}

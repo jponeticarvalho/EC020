@@ -1,0 +1,21 @@
+/*****************************************************************************
+ *   A demo example using several of the peripherals on the base board
+ *
+ *   Copyright(C) 2010, Embedded Artists AB
+ *   All rights reserved.
+ *
+ ******************************************************************************/
+
+#include "Display_Ctrl/Oled_Ctrl/Oled_Ctrl.h"
+
+int main (void)
+{
+//	command_init();
+	oled_init();
+
+	while(1)
+	{
+//		command_processLoop();
+//		display_processLoop();
+	}
+}

@@ -1,0 +1,24 @@
+/*****************************************************************************
+ *   A demo example using several of the peripherals on the base board
+ *
+ *   Copyright(C) 2010, Embedded Artists AB
+ *   All rights reserved.
+ *
+ ******************************************************************************/
+
+#include "Usart_Ctrl/Command/Command.h"
+#include "Display_Ctrl/Display_Ctrl.h"
+#include "System/Timer.h"
+
+int main (void)
+{
+
+//	command_init();
+	Display_Ctrl_Init();
+
+	while(1)
+	{
+//		command_processLoop();
+//		display_processLoop();
+	}
+}

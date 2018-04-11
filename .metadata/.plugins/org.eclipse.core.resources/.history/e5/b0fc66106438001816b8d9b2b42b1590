@@ -1,0 +1,13 @@
+/*
+ * Display_Ctrl.h
+ *
+ *  Created on: 03/04/2018
+ *      Author: jpone
+ */
+
+#ifndef DISPLAY_CTRL_H_
+#define DISPLAY_CTRL_H_
+
+void Display_Ctrl_Init(void)
+
+#endif /* DISPLAY_CTRL_H_ */

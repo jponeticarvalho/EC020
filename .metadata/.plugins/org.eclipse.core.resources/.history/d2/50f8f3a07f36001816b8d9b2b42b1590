@@ -1,0 +1,19 @@
+/*
+ * Usart_Ctrl.h
+ *
+ *  Created on: 02/04/2018
+ *      Author: jpone
+ */
+
+#include "lpc17xx_uart.h"
+#include "uart2.h"
+
+#ifndef USART_CTRL_H_
+#define USART_CTRL_H_
+
+#define USART_CTRL_BAUDRATE		115200
+#define USART_CTRL_DATA_BITS	uart
+#define USART_CTRL_PARITY
+#define USART_CTRL_STOP_BITS
+
+#endif /* USART_CTRL_H_ */

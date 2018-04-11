@@ -1,0 +1,333 @@
+16:47:03 **** Incremental Build of configuration Debug for project Lib_CMSISv1p30_LPC17xx ****
+make all 
+make: Nothing to be done for `all'.
+16:47:05 **** Incremental Build of configuration Debug for project Lib_MCU ****
+make all 
+make: Nothing to be done for `all'.
+16:47:06 **** Incremental Build of configuration Debug for project Lib_EaBaseBoard ****
+make all 
+make: Nothing to be done for `all'.
+16:47:09 **** Incremental Build of configuration Debug for project demo ****
+make all 
+Building file: ../src/Display_Ctrl/Light_Ctrl/Light_Ctrl.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -DDEBUG -D__USE_CMSIS=CMSISv1p30_LPC17xx -D__CODE_RED -D__NEWLIB__ -I"D:\Topicos Avancados\Lib_CMSISv1p30_LPC17xx\inc" -I"D:\Topicos Avancados\Lib_EaBaseBoard\inc" -I"D:\Topicos Avancados\Lib_MCU\inc" -O0 -g3 -Wall -c -fmessage-length=0 -fno-builtin -ffunction-sections -mcpu=cortex-m3 -mthumb -MMD -MP -MF"src/Display_Ctrl/Light_Ctrl/Light_Ctrl.d" -MT"src/Display_Ctrl/Light_Ctrl/Light_Ctrl.d" -o "src/Display_Ctrl/Light_Ctrl/Light_Ctrl.o" "../src/Display_Ctrl/Light_Ctrl/Light_Ctrl.c"
+../src/Display_Ctrl/Light_Ctrl/Light_Ctrl.c: In function 'Light_Ctrl_SetWidth':
+../src/Display_Ctrl/Light_Ctrl/Light_Ctrl.c:193:5: warning: implicit declaration of function 'readCommandReg' [-Wimplicit-function-declaration]
+../src/Display_Ctrl/Light_Ctrl/Light_Ctrl.c: In function 'Light_Ctrl_SetIrqInCycles':
+../src/Display_Ctrl/Light_Ctrl/Light_Ctrl.c:315:5: warning: implicit declaration of function 'readControlReg' [-Wimplicit-function-declaration]
+Finished building: ../src/Display_Ctrl/Light_Ctrl/Light_Ctrl.c
+ 
+Building target: demo.axf
+Invoking: MCU Linker
+arm-none-eabi-gcc -nostdlib -L"D:\Topicos Avancados\Lib_CMSISv1p30_LPC17xx\Debug" -L"D:\Topicos Avancados\Lib_EaBaseBoard\Debug" -L"D:\Topicos Avancados\Lib_MCU\Debug" -Xlinker --gc-sections -Xlinker -Map=demo.map -mcpu=cortex-m3 -mthumb -T "rdb1768cmsis_uart_Debug.ld" -o "demo.axf"  ./src/Usart_Ctrl/Command/Command.o  ./src/Usart_Ctrl/Usart_Ctrl.o  ./src/System/Timer.o  ./src/Display_Ctrl/Temp_Ctrl/Temp_Ctrl.o  ./src/Display_Ctrl/Ssp_Ctrl/Ssp_Ctrl.o  ./src/Display_Ctrl/Oled_Ctrl/Fonte5x7.o ./src/Display_Ctrl/Oled_Ctrl/Oled_Ctrl.o  ./src/Display_Ctrl/Light_Ctrl/Light_Ctrl.o  ./src/Display_Ctrl/I2c_Ctrl/I2c_Ctrl.o  ./src/Display_Ctrl/Button_Ctrl/Button_Ctrl.o  ./src/Display_Ctrl/Display_Ctrl.o ./src/Display_Ctrl/Display_State.o  ./src/cr_startup_lpc17.o ./src/main.o   -lCMSISv1p30_LPC17xx -lLib_EaBaseBoard -lLib_MCU
+Finished building target: demo.axf
+ 
+make --no-print-directory post-build
+Performing post-build steps
+arm-none-eabi-size demo.axf; # arm-none-eabi-objdump -h -S demo.axf >demo.lss
+   text	   data	    bss	    dec	    hex	filename
+  34300	   2180	   1792	  38272	   9580	demo.axf
+ 
+16:47:16 **** Incremental Build of configuration Debug for project demo ****
+make all 
+make: Nothing to be done for `all'.
+16:52:39 **** Incremental Build of configuration Debug for project demo ****
+make all 
+make: Nothing to be done for `all'.
+10:05:12 **** Incremental Build of configuration Debug for project Lib_CMSISv1p30_LPC17xx ****
+make all 
+make: Nothing to be done for `all'.
+10:05:18 **** Incremental Build of configuration Debug for project Lib_MCU ****
+make all 
+make: Nothing to be done for `all'.
+10:05:24 **** Incremental Build of configuration Debug for project Lib_EaBaseBoard ****
+make all 
+make: Nothing to be done for `all'.
+10:05:32 **** Incremental Build of configuration Debug for project demo ****
+make all 
+make: Nothing to be done for `all'.
+10:16:44 **** Incremental Build of configuration Debug for project demo ****
+make all 
+Building file: ../src/Display_Ctrl/Display_Ctrl.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -DDEBUG -D__USE_CMSIS=CMSISv1p30_LPC17xx -D__CODE_RED -D__NEWLIB__ -I"D:\Topicos Avancados\Lib_CMSISv1p30_LPC17xx\inc" -I"D:\Topicos Avancados\Lib_EaBaseBoard\inc" -I"D:\Topicos Avancados\Lib_MCU\inc" -O0 -g3 -Wall -c -fmessage-length=0 -fno-builtin -ffunction-sections -mcpu=cortex-m3 -mthumb -MMD -MP -MF"src/Display_Ctrl/Display_Ctrl.d" -MT"src/Display_Ctrl/Display_Ctrl.d" -o "src/Display_Ctrl/Display_Ctrl.o" "../src/Display_Ctrl/Display_Ctrl.c"
+Finished building: ../src/Display_Ctrl/Display_Ctrl.c
+ 
+Building file: ../src/main.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -DDEBUG -D__USE_CMSIS=CMSISv1p30_LPC17xx -D__CODE_RED -D__NEWLIB__ -I"D:\Topicos Avancados\Lib_CMSISv1p30_LPC17xx\inc" -I"D:\Topicos Avancados\Lib_EaBaseBoard\inc" -I"D:\Topicos Avancados\Lib_MCU\inc" -O0 -g3 -Wall -c -fmessage-length=0 -fno-builtin -ffunction-sections -mcpu=cortex-m3 -mthumb -MMD -MP -MF"src/main.d" -MT"src/main.d" -o "src/main.o" "../src/main.c"
+Finished building: ../src/main.c
+ 
+Building target: demo.axf
+Invoking: MCU Linker
+arm-none-eabi-gcc -nostdlib -L"D:\Topicos Avancados\Lib_CMSISv1p30_LPC17xx\Debug" -L"D:\Topicos Avancados\Lib_EaBaseBoard\Debug" -L"D:\Topicos Avancados\Lib_MCU\Debug" -Xlinker --gc-sections -Xlinker -Map=demo.map -mcpu=cortex-m3 -mthumb -T "rdb1768cmsis_uart_Debug.ld" -o "demo.axf"  ./src/Usart_Ctrl/Command/Command.o  ./src/Usart_Ctrl/Usart_Ctrl.o  ./src/System/Timer.o  ./src/Display_Ctrl/Temp_Ctrl/Temp_Ctrl.o  ./src/Display_Ctrl/Ssp_Ctrl/Ssp_Ctrl.o  ./src/Display_Ctrl/Oled_Ctrl/Fonte5x7.o ./src/Display_Ctrl/Oled_Ctrl/Oled_Ctrl.o  ./src/Display_Ctrl/Light_Ctrl/Light_Ctrl.o  ./src/Display_Ctrl/I2c_Ctrl/I2c_Ctrl.o  ./src/Display_Ctrl/Button_Ctrl/Button_Ctrl.o  ./src/Display_Ctrl/Display_Ctrl.o ./src/Display_Ctrl/Display_State.o  ./src/cr_startup_lpc17.o ./src/main.o   -lCMSISv1p30_LPC17xx -lLib_EaBaseBoard -lLib_MCU
+Finished building target: demo.axf
+ 
+make --no-print-directory post-build
+Performing post-build steps
+arm-none-eabi-size demo.axf; # arm-none-eabi-objdump -h -S demo.axf >demo.lss
+   text	   data	    bss	    dec	    hex	filename
+  34308	   2180	   1792	  38280	   9588	demo.axf
+ 
+10:25:27 **** Incremental Build of configuration Debug for project demo ****
+make all 
+Building file: ../src/Display_Ctrl/Button_Ctrl/Button_Ctrl.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -DDEBUG -D__USE_CMSIS=CMSISv1p30_LPC17xx -D__CODE_RED -D__NEWLIB__ -I"D:\Topicos Avancados\Lib_CMSISv1p30_LPC17xx\inc" -I"D:\Topicos Avancados\Lib_EaBaseBoard\inc" -I"D:\Topicos Avancados\Lib_MCU\inc" -O0 -g3 -Wall -c -fmessage-length=0 -fno-builtin -ffunction-sections -mcpu=cortex-m3 -mthumb -MMD -MP -MF"src/Display_Ctrl/Button_Ctrl/Button_Ctrl.d" -MT"src/Display_Ctrl/Button_Ctrl/Button_Ctrl.d" -o "src/Display_Ctrl/Button_Ctrl/Button_Ctrl.o" "../src/Display_Ctrl/Button_Ctrl/Button_Ctrl.c"
+Finished building: ../src/Display_Ctrl/Button_Ctrl/Button_Ctrl.c
+ 
+Building target: demo.axf
+Invoking: MCU Linker
+arm-none-eabi-gcc -nostdlib -L"D:\Topicos Avancados\Lib_CMSISv1p30_LPC17xx\Debug" -L"D:\Topicos Avancados\Lib_EaBaseBoard\Debug" -L"D:\Topicos Avancados\Lib_MCU\Debug" -Xlinker --gc-sections -Xlinker -Map=demo.map -mcpu=cortex-m3 -mthumb -T "rdb1768cmsis_uart_Debug.ld" -o "demo.axf"  ./src/Usart_Ctrl/Command/Command.o  ./src/Usart_Ctrl/Usart_Ctrl.o  ./src/System/Timer.o  ./src/Display_Ctrl/Temp_Ctrl/Temp_Ctrl.o  ./src/Display_Ctrl/Ssp_Ctrl/Ssp_Ctrl.o  ./src/Display_Ctrl/Oled_Ctrl/Fonte5x7.o ./src/Display_Ctrl/Oled_Ctrl/Oled_Ctrl.o  ./src/Display_Ctrl/Light_Ctrl/Light_Ctrl.o  ./src/Display_Ctrl/I2c_Ctrl/I2c_Ctrl.o  ./src/Display_Ctrl/Button_Ctrl/Button_Ctrl.o  ./src/Display_Ctrl/Display_Ctrl.o ./src/Display_Ctrl/Display_State.o  ./src/cr_startup_lpc17.o ./src/main.o   -lCMSISv1p30_LPC17xx -lLib_EaBaseBoard -lLib_MCU
+Finished building target: demo.axf
+ 
+make --no-print-directory post-build
+Performing post-build steps
+arm-none-eabi-size demo.axf; # arm-none-eabi-objdump -h -S demo.axf >demo.lss
+   text	   data	    bss	    dec	    hex	filename
+  34308	   2180	   1792	  38280	   9588	demo.axf
+ 
+10:30:06 **** Incremental Build of configuration Debug for project demo ****
+make all 
+Building file: ../src/Display_Ctrl/Button_Ctrl/Button_Ctrl.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -DDEBUG -D__USE_CMSIS=CMSISv1p30_LPC17xx -D__CODE_RED -D__NEWLIB__ -I"D:\Topicos Avancados\Lib_CMSISv1p30_LPC17xx\inc" -I"D:\Topicos Avancados\Lib_EaBaseBoard\inc" -I"D:\Topicos Avancados\Lib_MCU\inc" -O0 -g3 -Wall -c -fmessage-length=0 -fno-builtin -ffunction-sections -mcpu=cortex-m3 -mthumb -MMD -MP -MF"src/Display_Ctrl/Button_Ctrl/Button_Ctrl.d" -MT"src/Display_Ctrl/Button_Ctrl/Button_Ctrl.d" -o "src/Display_Ctrl/Button_Ctrl/Button_Ctrl.o" "../src/Display_Ctrl/Button_Ctrl/Button_Ctrl.c"
+Finished building: ../src/Display_Ctrl/Button_Ctrl/Button_Ctrl.c
+ 
+Building target: demo.axf
+Invoking: MCU Linker
+arm-none-eabi-gcc -nostdlib -L"D:\Topicos Avancados\Lib_CMSISv1p30_LPC17xx\Debug" -L"D:\Topicos Avancados\Lib_EaBaseBoard\Debug" -L"D:\Topicos Avancados\Lib_MCU\Debug" -Xlinker --gc-sections -Xlinker -Map=demo.map -mcpu=cortex-m3 -mthumb -T "rdb1768cmsis_uart_Debug.ld" -o "demo.axf"  ./src/Usart_Ctrl/Command/Command.o  ./src/Usart_Ctrl/Usart_Ctrl.o  ./src/System/Timer.o  ./src/Display_Ctrl/Temp_Ctrl/Temp_Ctrl.o  ./src/Display_Ctrl/Ssp_Ctrl/Ssp_Ctrl.o  ./src/Display_Ctrl/Oled_Ctrl/Fonte5x7.o ./src/Display_Ctrl/Oled_Ctrl/Oled_Ctrl.o  ./src/Display_Ctrl/Light_Ctrl/Light_Ctrl.o  ./src/Display_Ctrl/I2c_Ctrl/I2c_Ctrl.o  ./src/Display_Ctrl/Button_Ctrl/Button_Ctrl.o  ./src/Display_Ctrl/Display_Ctrl.o ./src/Display_Ctrl/Display_State.o  ./src/cr_startup_lpc17.o ./src/main.o   -lCMSISv1p30_LPC17xx -lLib_EaBaseBoard -lLib_MCU
+Finished building target: demo.axf
+ 
+make --no-print-directory post-build
+Performing post-build steps
+arm-none-eabi-size demo.axf; # arm-none-eabi-objdump -h -S demo.axf >demo.lss
+   text	   data	    bss	    dec	    hex	filename
+  34364	   2180	   1792	  38336	   95c0	demo.axf
+ 
+10:35:41 **** Incremental Build of configuration Debug for project demo ****
+make all 
+Building file: ../src/Display_Ctrl/Button_Ctrl/Button_Ctrl.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -DDEBUG -D__USE_CMSIS=CMSISv1p30_LPC17xx -D__CODE_RED -D__NEWLIB__ -I"D:\Topicos Avancados\Lib_CMSISv1p30_LPC17xx\inc" -I"D:\Topicos Avancados\Lib_EaBaseBoard\inc" -I"D:\Topicos Avancados\Lib_MCU\inc" -O0 -g3 -Wall -c -fmessage-length=0 -fno-builtin -ffunction-sections -mcpu=cortex-m3 -mthumb -MMD -MP -MF"src/Display_Ctrl/Button_Ctrl/Button_Ctrl.d" -MT"src/Display_Ctrl/Button_Ctrl/Button_Ctrl.d" -o "src/Display_Ctrl/Button_Ctrl/Button_Ctrl.o" "../src/Display_Ctrl/Button_Ctrl/Button_Ctrl.c"
+Finished building: ../src/Display_Ctrl/Button_Ctrl/Button_Ctrl.c
+ 
+Building target: demo.axf
+Invoking: MCU Linker
+arm-none-eabi-gcc -nostdlib -L"D:\Topicos Avancados\Lib_CMSISv1p30_LPC17xx\Debug" -L"D:\Topicos Avancados\Lib_EaBaseBoard\Debug" -L"D:\Topicos Avancados\Lib_MCU\Debug" -Xlinker --gc-sections -Xlinker -Map=demo.map -mcpu=cortex-m3 -mthumb -T "rdb1768cmsis_uart_Debug.ld" -o "demo.axf"  ./src/Usart_Ctrl/Command/Command.o  ./src/Usart_Ctrl/Usart_Ctrl.o  ./src/System/Timer.o  ./src/Display_Ctrl/Temp_Ctrl/Temp_Ctrl.o  ./src/Display_Ctrl/Ssp_Ctrl/Ssp_Ctrl.o  ./src/Display_Ctrl/Oled_Ctrl/Fonte5x7.o ./src/Display_Ctrl/Oled_Ctrl/Oled_Ctrl.o  ./src/Display_Ctrl/Light_Ctrl/Light_Ctrl.o  ./src/Display_Ctrl/I2c_Ctrl/I2c_Ctrl.o  ./src/Display_Ctrl/Button_Ctrl/Button_Ctrl.o  ./src/Display_Ctrl/Display_Ctrl.o ./src/Display_Ctrl/Display_State.o  ./src/cr_startup_lpc17.o ./src/main.o   -lCMSISv1p30_LPC17xx -lLib_EaBaseBoard -lLib_MCU
+Finished building target: demo.axf
+ 
+make --no-print-directory post-build
+Performing post-build steps
+arm-none-eabi-size demo.axf; # arm-none-eabi-objdump -h -S demo.axf >demo.lss
+   text	   data	    bss	    dec	    hex	filename
+  34332	   2180	   1792	  38304	   95a0	demo.axf
+ 
+22:15:32 **** Incremental Build of configuration Debug for project Lib_CMSISv1p30_LPC17xx ****
+make all 
+make: Nothing to be done for `all'.
+22:15:38 **** Incremental Build of configuration Debug for project Lib_MCU ****
+make all 
+make: Nothing to be done for `all'.
+22:15:44 **** Incremental Build of configuration Debug for project Lib_EaBaseBoard ****
+make all 
+make: Nothing to be done for `all'.
+22:15:51 **** Incremental Build of configuration Debug for project demo ****
+make all 
+Building file: ../src/Display_Ctrl/Button_Ctrl/Button_Ctrl.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -DDEBUG -D__USE_CMSIS=CMSISv1p30_LPC17xx -D__CODE_RED -D__NEWLIB__ -I"D:\Topicos Avancados\Lib_CMSISv1p30_LPC17xx\inc" -I"D:\Topicos Avancados\Lib_EaBaseBoard\inc" -I"D:\Topicos Avancados\Lib_MCU\inc" -O0 -g3 -Wall -c -fmessage-length=0 -fno-builtin -ffunction-sections -mcpu=cortex-m3 -mthumb -MMD -MP -MF"src/Display_Ctrl/Button_Ctrl/Button_Ctrl.d" -MT"src/Display_Ctrl/Button_Ctrl/Button_Ctrl.d" -o "src/Display_Ctrl/Button_Ctrl/Button_Ctrl.o" "../src/Display_Ctrl/Button_Ctrl/Button_Ctrl.c"
+../src/Display_Ctrl/Button_Ctrl/Button_Ctrl.c: In function 'Button_Ctrl_GetValue':
+../src/Display_Ctrl/Button_Ctrl/Button_Ctrl.c:63:10: warning: unused variable 'result' [-Wunused-variable]
+Finished building: ../src/Display_Ctrl/Button_Ctrl/Button_Ctrl.c
+ 
+Building target: demo.axf
+Invoking: MCU Linker
+arm-none-eabi-gcc -nostdlib -L"D:\Topicos Avancados\Lib_CMSISv1p30_LPC17xx\Debug" -L"D:\Topicos Avancados\Lib_EaBaseBoard\Debug" -L"D:\Topicos Avancados\Lib_MCU\Debug" -Xlinker --gc-sections -Xlinker -Map=demo.map -mcpu=cortex-m3 -mthumb -T "rdb1768cmsis_uart_Debug.ld" -o "demo.axf"  ./src/Usart_Ctrl/Command/Command.o  ./src/Usart_Ctrl/Usart_Ctrl.o  ./src/System/Timer.o  ./src/Display_Ctrl/Temp_Ctrl/Temp_Ctrl.o  ./src/Display_Ctrl/Ssp_Ctrl/Ssp_Ctrl.o  ./src/Display_Ctrl/Oled_Ctrl/Fonte5x7.o ./src/Display_Ctrl/Oled_Ctrl/Oled_Ctrl.o  ./src/Display_Ctrl/Light_Ctrl/Light_Ctrl.o  ./src/Display_Ctrl/I2c_Ctrl/I2c_Ctrl.o  ./src/Display_Ctrl/Button_Ctrl/Button_Ctrl.o  ./src/Display_Ctrl/Display_Ctrl.o ./src/Display_Ctrl/Display_State.o  ./src/cr_startup_lpc17.o ./src/main.o   -lCMSISv1p30_LPC17xx -lLib_EaBaseBoard -lLib_MCU
+Finished building target: demo.axf
+ 
+make --no-print-directory post-build
+Performing post-build steps
+arm-none-eabi-size demo.axf; # arm-none-eabi-objdump -h -S demo.axf >demo.lss
+   text	   data	    bss	    dec	    hex	filename
+  34348	   2180	   1792	  38320	   95b0	demo.axf
+ 
+22:16:51 **** Incremental Build of configuration Debug for project Lib_CMSISv1p30_LPC17xx ****
+make all 
+make: Nothing to be done for `all'.
+22:16:55 **** Incremental Build of configuration Debug for project Lib_MCU ****
+make all 
+make: Nothing to be done for `all'.
+22:16:58 **** Incremental Build of configuration Debug for project Lib_EaBaseBoard ****
+make all 
+make: Nothing to be done for `all'.
+22:17:05 **** Incremental Build of configuration Debug for project demo ****
+make all 
+Building file: ../src/Display_Ctrl/Display_Ctrl.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -DDEBUG -D__USE_CMSIS=CMSISv1p30_LPC17xx -D__CODE_RED -D__NEWLIB__ -I"D:\Topicos Avancados\Lib_CMSISv1p30_LPC17xx\inc" -I"D:\Topicos Avancados\Lib_EaBaseBoard\inc" -I"D:\Topicos Avancados\Lib_MCU\inc" -O0 -g3 -Wall -c -fmessage-length=0 -fno-builtin -ffunction-sections -mcpu=cortex-m3 -mthumb -MMD -MP -MF"src/Display_Ctrl/Display_Ctrl.d" -MT"src/Display_Ctrl/Display_Ctrl.d" -o "src/Display_Ctrl/Display_Ctrl.o" "../src/Display_Ctrl/Display_Ctrl.c"
+Finished building: ../src/Display_Ctrl/Display_Ctrl.c
+ 
+Building target: demo.axf
+Invoking: MCU Linker
+arm-none-eabi-gcc -nostdlib -L"D:\Topicos Avancados\Lib_CMSISv1p30_LPC17xx\Debug" -L"D:\Topicos Avancados\Lib_EaBaseBoard\Debug" -L"D:\Topicos Avancados\Lib_MCU\Debug" -Xlinker --gc-sections -Xlinker -Map=demo.map -mcpu=cortex-m3 -mthumb -T "rdb1768cmsis_uart_Debug.ld" -o "demo.axf"  ./src/Usart_Ctrl/Command/Command.o  ./src/Usart_Ctrl/Usart_Ctrl.o  ./src/System/Timer.o  ./src/Display_Ctrl/Temp_Ctrl/Temp_Ctrl.o  ./src/Display_Ctrl/Ssp_Ctrl/Ssp_Ctrl.o  ./src/Display_Ctrl/Oled_Ctrl/Fonte5x7.o ./src/Display_Ctrl/Oled_Ctrl/Oled_Ctrl.o  ./src/Display_Ctrl/Light_Ctrl/Light_Ctrl.o  ./src/Display_Ctrl/I2c_Ctrl/I2c_Ctrl.o  ./src/Display_Ctrl/Button_Ctrl/Button_Ctrl.o  ./src/Display_Ctrl/Display_Ctrl.o ./src/Display_Ctrl/Display_State.o  ./src/cr_startup_lpc17.o ./src/main.o   -lCMSISv1p30_LPC17xx -lLib_EaBaseBoard -lLib_MCU
+Finished building target: demo.axf
+ 
+make --no-print-directory post-build
+Performing post-build steps
+arm-none-eabi-size demo.axf; # arm-none-eabi-objdump -h -S demo.axf >demo.lss
+   text	   data	    bss	    dec	    hex	filename
+  34348	   2180	   1792	  38320	   95b0	demo.axf
+ 
+22:20:59 **** Incremental Build of configuration Debug for project demo ****
+make all 
+Building file: ../src/Display_Ctrl/Button_Ctrl/Button_Ctrl.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -DDEBUG -D__USE_CMSIS=CMSISv1p30_LPC17xx -D__CODE_RED -D__NEWLIB__ -I"D:\Topicos Avancados\Lib_CMSISv1p30_LPC17xx\inc" -I"D:\Topicos Avancados\Lib_EaBaseBoard\inc" -I"D:\Topicos Avancados\Lib_MCU\inc" -O0 -g3 -Wall -c -fmessage-length=0 -fno-builtin -ffunction-sections -mcpu=cortex-m3 -mthumb -MMD -MP -MF"src/Display_Ctrl/Button_Ctrl/Button_Ctrl.d" -MT"src/Display_Ctrl/Button_Ctrl/Button_Ctrl.d" -o "src/Display_Ctrl/Button_Ctrl/Button_Ctrl.o" "../src/Display_Ctrl/Button_Ctrl/Button_Ctrl.c"
+../src/Display_Ctrl/Button_Ctrl/Button_Ctrl.c: In function 'Button_Ctrl_GetValue':
+../src/Display_Ctrl/Button_Ctrl/Button_Ctrl.c:63:10: warning: unused variable 'result' [-Wunused-variable]
+Finished building: ../src/Display_Ctrl/Button_Ctrl/Button_Ctrl.c
+ 
+Building target: demo.axf
+Invoking: MCU Linker
+arm-none-eabi-gcc -nostdlib -L"D:\Topicos Avancados\Lib_CMSISv1p30_LPC17xx\Debug" -L"D:\Topicos Avancados\Lib_EaBaseBoard\Debug" -L"D:\Topicos Avancados\Lib_MCU\Debug" -Xlinker --gc-sections -Xlinker -Map=demo.map -mcpu=cortex-m3 -mthumb -T "rdb1768cmsis_uart_Debug.ld" -o "demo.axf"  ./src/Usart_Ctrl/Command/Command.o  ./src/Usart_Ctrl/Usart_Ctrl.o  ./src/System/Timer.o  ./src/Display_Ctrl/Temp_Ctrl/Temp_Ctrl.o  ./src/Display_Ctrl/Ssp_Ctrl/Ssp_Ctrl.o  ./src/Display_Ctrl/Oled_Ctrl/Fonte5x7.o ./src/Display_Ctrl/Oled_Ctrl/Oled_Ctrl.o  ./src/Display_Ctrl/Light_Ctrl/Light_Ctrl.o  ./src/Display_Ctrl/I2c_Ctrl/I2c_Ctrl.o  ./src/Display_Ctrl/Button_Ctrl/Button_Ctrl.o  ./src/Display_Ctrl/Display_Ctrl.o ./src/Display_Ctrl/Display_State.o  ./src/cr_startup_lpc17.o ./src/main.o   -lCMSISv1p30_LPC17xx -lLib_EaBaseBoard -lLib_MCU
+Finished building target: demo.axf
+ 
+make --no-print-directory post-build
+Performing post-build steps
+arm-none-eabi-size demo.axf; # arm-none-eabi-objdump -h -S demo.axf >demo.lss
+   text	   data	    bss	    dec	    hex	filename
+  34324	   2180	   1792	  38296	   9598	demo.axf
+ 
+22:22:02 **** Incremental Build of configuration Debug for project demo ****
+make all 
+Building file: ../src/Display_Ctrl/Display_Ctrl.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -DDEBUG -D__USE_CMSIS=CMSISv1p30_LPC17xx -D__CODE_RED -D__NEWLIB__ -I"D:\Topicos Avancados\Lib_CMSISv1p30_LPC17xx\inc" -I"D:\Topicos Avancados\Lib_EaBaseBoard\inc" -I"D:\Topicos Avancados\Lib_MCU\inc" -O0 -g3 -Wall -c -fmessage-length=0 -fno-builtin -ffunction-sections -mcpu=cortex-m3 -mthumb -MMD -MP -MF"src/Display_Ctrl/Display_Ctrl.d" -MT"src/Display_Ctrl/Display_Ctrl.d" -o "src/Display_Ctrl/Display_Ctrl.o" "../src/Display_Ctrl/Display_Ctrl.c"
+Finished building: ../src/Display_Ctrl/Display_Ctrl.c
+ 
+Building target: demo.axf
+Invoking: MCU Linker
+arm-none-eabi-gcc -nostdlib -L"D:\Topicos Avancados\Lib_CMSISv1p30_LPC17xx\Debug" -L"D:\Topicos Avancados\Lib_EaBaseBoard\Debug" -L"D:\Topicos Avancados\Lib_MCU\Debug" -Xlinker --gc-sections -Xlinker -Map=demo.map -mcpu=cortex-m3 -mthumb -T "rdb1768cmsis_uart_Debug.ld" -o "demo.axf"  ./src/Usart_Ctrl/Command/Command.o  ./src/Usart_Ctrl/Usart_Ctrl.o  ./src/System/Timer.o  ./src/Display_Ctrl/Temp_Ctrl/Temp_Ctrl.o  ./src/Display_Ctrl/Ssp_Ctrl/Ssp_Ctrl.o  ./src/Display_Ctrl/Oled_Ctrl/Fonte5x7.o ./src/Display_Ctrl/Oled_Ctrl/Oled_Ctrl.o  ./src/Display_Ctrl/Light_Ctrl/Light_Ctrl.o  ./src/Display_Ctrl/I2c_Ctrl/I2c_Ctrl.o  ./src/Display_Ctrl/Button_Ctrl/Button_Ctrl.o  ./src/Display_Ctrl/Display_Ctrl.o ./src/Display_Ctrl/Display_State.o  ./src/cr_startup_lpc17.o ./src/main.o   -lCMSISv1p30_LPC17xx -lLib_EaBaseBoard -lLib_MCU
+Finished building target: demo.axf
+ 
+make --no-print-directory post-build
+Performing post-build steps
+arm-none-eabi-size demo.axf; # arm-none-eabi-objdump -h -S demo.axf >demo.lss
+   text	   data	    bss	    dec	    hex	filename
+  34260	   2180	   1792	  38232	   9558	demo.axf
+ 
+22:28:16 **** Incremental Build of configuration Debug for project Lib_CMSISv1p30_LPC17xx ****
+make all 
+make: Nothing to be done for `all'.
+22:28:20 **** Incremental Build of configuration Debug for project Lib_MCU ****
+make all 
+make: Nothing to be done for `all'.
+22:28:24 **** Incremental Build of configuration Debug for project Lib_EaBaseBoard ****
+make all 
+make: Nothing to be done for `all'.
+22:28:30 **** Incremental Build of configuration Debug for project demo ****
+make all 
+Building file: ../src/Display_Ctrl/Button_Ctrl/Button_Ctrl.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -DDEBUG -D__USE_CMSIS=CMSISv1p30_LPC17xx -D__CODE_RED -D__NEWLIB__ -I"D:\Topicos Avancados\Lib_CMSISv1p30_LPC17xx\inc" -I"D:\Topicos Avancados\Lib_EaBaseBoard\inc" -I"D:\Topicos Avancados\Lib_MCU\inc" -O0 -g3 -Wall -c -fmessage-length=0 -fno-builtin -ffunction-sections -mcpu=cortex-m3 -mthumb -MMD -MP -MF"src/Display_Ctrl/Button_Ctrl/Button_Ctrl.d" -MT"src/Display_Ctrl/Button_Ctrl/Button_Ctrl.d" -o "src/Display_Ctrl/Button_Ctrl/Button_Ctrl.o" "../src/Display_Ctrl/Button_Ctrl/Button_Ctrl.c"
+../src/Display_Ctrl/Button_Ctrl/Button_Ctrl.c: In function 'Button_Ctrl_GetValue':
+../src/Display_Ctrl/Button_Ctrl/Button_Ctrl.c:84:10: warning: unused variable 'result' [-Wunused-variable]
+Finished building: ../src/Display_Ctrl/Button_Ctrl/Button_Ctrl.c
+ 
+Building target: demo.axf
+Invoking: MCU Linker
+arm-none-eabi-gcc -nostdlib -L"D:\Topicos Avancados\Lib_CMSISv1p30_LPC17xx\Debug" -L"D:\Topicos Avancados\Lib_EaBaseBoard\Debug" -L"D:\Topicos Avancados\Lib_MCU\Debug" -Xlinker --gc-sections -Xlinker -Map=demo.map -mcpu=cortex-m3 -mthumb -T "rdb1768cmsis_uart_Debug.ld" -o "demo.axf"  ./src/Usart_Ctrl/Command/Command.o  ./src/Usart_Ctrl/Usart_Ctrl.o  ./src/System/Timer.o  ./src/Display_Ctrl/Temp_Ctrl/Temp_Ctrl.o  ./src/Display_Ctrl/Ssp_Ctrl/Ssp_Ctrl.o  ./src/Display_Ctrl/Oled_Ctrl/Fonte5x7.o ./src/Display_Ctrl/Oled_Ctrl/Oled_Ctrl.o  ./src/Display_Ctrl/Light_Ctrl/Light_Ctrl.o  ./src/Display_Ctrl/I2c_Ctrl/I2c_Ctrl.o  ./src/Display_Ctrl/Button_Ctrl/Button_Ctrl.o  ./src/Display_Ctrl/Display_Ctrl.o ./src/Display_Ctrl/Display_State.o  ./src/cr_startup_lpc17.o ./src/main.o   -lCMSISv1p30_LPC17xx -lLib_EaBaseBoard -lLib_MCU
+Finished building target: demo.axf
+ 
+make --no-print-directory post-build
+Performing post-build steps
+arm-none-eabi-size demo.axf; # arm-none-eabi-objdump -h -S demo.axf >demo.lss
+   text	   data	    bss	    dec	    hex	filename
+  34316	   2180	   1792	  38288	   9590	demo.axf
+ 
+22:33:12 **** Incremental Build of configuration Debug for project Lib_CMSISv1p30_LPC17xx ****
+make all 
+make: Nothing to be done for `all'.
+22:33:15 **** Incremental Build of configuration Debug for project Lib_MCU ****
+make all 
+make: Nothing to be done for `all'.
+22:33:19 **** Incremental Build of configuration Debug for project Lib_EaBaseBoard ****
+make all 
+make: Nothing to be done for `all'.
+22:33:25 **** Incremental Build of configuration Debug for project demo ****
+make all 
+Building file: ../src/Usart_Ctrl/Usart_Ctrl.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -DDEBUG -D__USE_CMSIS=CMSISv1p30_LPC17xx -D__CODE_RED -D__NEWLIB__ -I"D:\Topicos Avancados\Lib_CMSISv1p30_LPC17xx\inc" -I"D:\Topicos Avancados\Lib_EaBaseBoard\inc" -I"D:\Topicos Avancados\Lib_MCU\inc" -O0 -g3 -Wall -c -fmessage-length=0 -fno-builtin -ffunction-sections -mcpu=cortex-m3 -mthumb -MMD -MP -MF"src/Usart_Ctrl/Usart_Ctrl.d" -MT"src/Usart_Ctrl/Usart_Ctrl.d" -o "src/Usart_Ctrl/Usart_Ctrl.o" "../src/Usart_Ctrl/Usart_Ctrl.c"
+Finished building: ../src/Usart_Ctrl/Usart_Ctrl.c
+ 
+Building file: ../src/System/Timer.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -DDEBUG -D__USE_CMSIS=CMSISv1p30_LPC17xx -D__CODE_RED -D__NEWLIB__ -I"D:\Topicos Avancados\Lib_CMSISv1p30_LPC17xx\inc" -I"D:\Topicos Avancados\Lib_EaBaseBoard\inc" -I"D:\Topicos Avancados\Lib_MCU\inc" -O0 -g3 -Wall -c -fmessage-length=0 -fno-builtin -ffunction-sections -mcpu=cortex-m3 -mthumb -MMD -MP -MF"src/System/Timer.d" -MT"src/System/Timer.d" -o "src/System/Timer.o" "../src/System/Timer.c"
+Finished building: ../src/System/Timer.c
+ 
+Building file: ../src/Display_Ctrl/Ssp_Ctrl/Ssp_Ctrl.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -DDEBUG -D__USE_CMSIS=CMSISv1p30_LPC17xx -D__CODE_RED -D__NEWLIB__ -I"D:\Topicos Avancados\Lib_CMSISv1p30_LPC17xx\inc" -I"D:\Topicos Avancados\Lib_EaBaseBoard\inc" -I"D:\Topicos Avancados\Lib_MCU\inc" -O0 -g3 -Wall -c -fmessage-length=0 -fno-builtin -ffunction-sections -mcpu=cortex-m3 -mthumb -MMD -MP -MF"src/Display_Ctrl/Ssp_Ctrl/Ssp_Ctrl.d" -MT"src/Display_Ctrl/Ssp_Ctrl/Ssp_Ctrl.d" -o "src/Display_Ctrl/Ssp_Ctrl/Ssp_Ctrl.o" "../src/Display_Ctrl/Ssp_Ctrl/Ssp_Ctrl.c"
+Finished building: ../src/Display_Ctrl/Ssp_Ctrl/Ssp_Ctrl.c
+ 
+Building file: ../src/Display_Ctrl/I2c_Ctrl/I2c_Ctrl.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -DDEBUG -D__USE_CMSIS=CMSISv1p30_LPC17xx -D__CODE_RED -D__NEWLIB__ -I"D:\Topicos Avancados\Lib_CMSISv1p30_LPC17xx\inc" -I"D:\Topicos Avancados\Lib_EaBaseBoard\inc" -I"D:\Topicos Avancados\Lib_MCU\inc" -O0 -g3 -Wall -c -fmessage-length=0 -fno-builtin -ffunction-sections -mcpu=cortex-m3 -mthumb -MMD -MP -MF"src/Display_Ctrl/I2c_Ctrl/I2c_Ctrl.d" -MT"src/Display_Ctrl/I2c_Ctrl/I2c_Ctrl.d" -o "src/Display_Ctrl/I2c_Ctrl/I2c_Ctrl.o" "../src/Display_Ctrl/I2c_Ctrl/I2c_Ctrl.c"
+Finished building: ../src/Display_Ctrl/I2c_Ctrl/I2c_Ctrl.c
+ 
+Building file: ../src/Display_Ctrl/Button_Ctrl/Button_Ctrl.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -DDEBUG -D__USE_CMSIS=CMSISv1p30_LPC17xx -D__CODE_RED -D__NEWLIB__ -I"D:\Topicos Avancados\Lib_CMSISv1p30_LPC17xx\inc" -I"D:\Topicos Avancados\Lib_EaBaseBoard\inc" -I"D:\Topicos Avancados\Lib_MCU\inc" -O0 -g3 -Wall -c -fmessage-length=0 -fno-builtin -ffunction-sections -mcpu=cortex-m3 -mthumb -MMD -MP -MF"src/Display_Ctrl/Button_Ctrl/Button_Ctrl.d" -MT"src/Display_Ctrl/Button_Ctrl/Button_Ctrl.d" -o "src/Display_Ctrl/Button_Ctrl/Button_Ctrl.o" "../src/Display_Ctrl/Button_Ctrl/Button_Ctrl.c"
+Finished building: ../src/Display_Ctrl/Button_Ctrl/Button_Ctrl.c
+ 
+Building file: ../src/Display_Ctrl/Display_Ctrl.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -DDEBUG -D__USE_CMSIS=CMSISv1p30_LPC17xx -D__CODE_RED -D__NEWLIB__ -I"D:\Topicos Avancados\Lib_CMSISv1p30_LPC17xx\inc" -I"D:\Topicos Avancados\Lib_EaBaseBoard\inc" -I"D:\Topicos Avancados\Lib_MCU\inc" -O0 -g3 -Wall -c -fmessage-length=0 -fno-builtin -ffunction-sections -mcpu=cortex-m3 -mthumb -MMD -MP -MF"src/Display_Ctrl/Display_Ctrl.d" -MT"src/Display_Ctrl/Display_Ctrl.d" -o "src/Display_Ctrl/Display_Ctrl.o" "../src/Display_Ctrl/Display_Ctrl.c"
+Finished building: ../src/Display_Ctrl/Display_Ctrl.c
+ 
+Building file: ../src/main.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -DDEBUG -D__USE_CMSIS=CMSISv1p30_LPC17xx -D__CODE_RED -D__NEWLIB__ -I"D:\Topicos Avancados\Lib_CMSISv1p30_LPC17xx\inc" -I"D:\Topicos Avancados\Lib_EaBaseBoard\inc" -I"D:\Topicos Avancados\Lib_MCU\inc" -O0 -g3 -Wall -c -fmessage-length=0 -fno-builtin -ffunction-sections -mcpu=cortex-m3 -mthumb -MMD -MP -MF"src/main.d" -MT"src/main.d" -o "src/main.o" "../src/main.c"
+Finished building: ../src/main.c
+ 
+Building target: demo.axf
+Invoking: MCU Linker
+arm-none-eabi-gcc -nostdlib -L"D:\Topicos Avancados\Lib_CMSISv1p30_LPC17xx\Debug" -L"D:\Topicos Avancados\Lib_EaBaseBoard\Debug" -L"D:\Topicos Avancados\Lib_MCU\Debug" -Xlinker --gc-sections -Xlinker -Map=demo.map -mcpu=cortex-m3 -mthumb -T "rdb1768cmsis_uart_Debug.ld" -o "demo.axf"  ./src/Usart_Ctrl/Command/Command.o  ./src/Usart_Ctrl/Usart_Ctrl.o  ./src/System/Timer.o  ./src/Display_Ctrl/Temp_Ctrl/Temp_Ctrl.o  ./src/Display_Ctrl/Ssp_Ctrl/Ssp_Ctrl.o  ./src/Display_Ctrl/Oled_Ctrl/Fonte5x7.o ./src/Display_Ctrl/Oled_Ctrl/Oled_Ctrl.o  ./src/Display_Ctrl/Light_Ctrl/Light_Ctrl.o  ./src/Display_Ctrl/I2c_Ctrl/I2c_Ctrl.o  ./src/Display_Ctrl/Button_Ctrl/Button_Ctrl.o  ./src/Display_Ctrl/Display_Ctrl.o ./src/Display_Ctrl/Display_State.o  ./src/cr_startup_lpc17.o ./src/main.o   -lCMSISv1p30_LPC17xx -lLib_EaBaseBoard -lLib_MCU
+Finished building target: demo.axf
+ 
+make --no-print-directory post-build
+Performing post-build steps
+arm-none-eabi-size demo.axf; # arm-none-eabi-objdump -h -S demo.axf >demo.lss
+   text	   data	    bss	    dec	    hex	filename
+  34596	   2180	   1792	  38568	   96a8	demo.axf
+ 
+22:34:35 **** Incremental Build of configuration Debug for project Lib_CMSISv1p30_LPC17xx ****
+make all 
+make: Nothing to be done for `all'.
+22:34:40 **** Incremental Build of configuration Debug for project Lib_MCU ****
+make all 
+make: Nothing to be done for `all'.
+22:34:45 **** Incremental Build of configuration Debug for project Lib_EaBaseBoard ****
+make all 
+make: Nothing to be done for `all'.
+22:34:52 **** Incremental Build of configuration Debug for project demo ****
+make all 
+Building file: ../src/Display_Ctrl/Display_State.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -DDEBUG -D__USE_CMSIS=CMSISv1p30_LPC17xx -D__CODE_RED -D__NEWLIB__ -I"D:\Topicos Avancados\Lib_CMSISv1p30_LPC17xx\inc" -I"D:\Topicos Avancados\Lib_EaBaseBoard\inc" -I"D:\Topicos Avancados\Lib_MCU\inc" -O0 -g3 -Wall -c -fmessage-length=0 -fno-builtin -ffunction-sections -mcpu=cortex-m3 -mthumb -MMD -MP -MF"src/Display_Ctrl/Display_State.d" -MT"src/Display_Ctrl/Display_State.d" -o "src/Display_Ctrl/Display_State.o" "../src/Display_Ctrl/Display_State.c"
+Finished building: ../src/Display_Ctrl/Display_State.c
+ 
+Building target: demo.axf
+Invoking: MCU Linker
+arm-none-eabi-gcc -nostdlib -L"D:\Topicos Avancados\Lib_CMSISv1p30_LPC17xx\Debug" -L"D:\Topicos Avancados\Lib_EaBaseBoard\Debug" -L"D:\Topicos Avancados\Lib_MCU\Debug" -Xlinker --gc-sections -Xlinker -Map=demo.map -mcpu=cortex-m3 -mthumb -T "rdb1768cmsis_uart_Debug.ld" -o "demo.axf"  ./src/Usart_Ctrl/Command/Command.o  ./src/Usart_Ctrl/Usart_Ctrl.o  ./src/System/Timer.o  ./src/Display_Ctrl/Temp_Ctrl/Temp_Ctrl.o  ./src/Display_Ctrl/Ssp_Ctrl/Ssp_Ctrl.o  ./src/Display_Ctrl/Oled_Ctrl/Fonte5x7.o ./src/Display_Ctrl/Oled_Ctrl/Oled_Ctrl.o  ./src/Display_Ctrl/Light_Ctrl/Light_Ctrl.o  ./src/Display_Ctrl/I2c_Ctrl/I2c_Ctrl.o  ./src/Display_Ctrl/Button_Ctrl/Button_Ctrl.o  ./src/Display_Ctrl/Display_Ctrl.o ./src/Display_Ctrl/Display_State.o  ./src/cr_startup_lpc17.o ./src/main.o   -lCMSISv1p30_LPC17xx -lLib_EaBaseBoard -lLib_MCU
+Finished building target: demo.axf
+ 
+make --no-print-directory post-build
+Performing post-build steps
+arm-none-eabi-size demo.axf; # arm-none-eabi-objdump -h -S demo.axf >demo.lss
+   text	   data	    bss	    dec	    hex	filename
+  34596	   2180	   1792	  38568	   96a8	demo.axf
+ 

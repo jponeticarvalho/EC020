@@ -1,0 +1,27 @@
+/*****************************************************************************
+ *   A demo example using several of the peripherals on the base board
+ *
+ *   Copyright(C) 2010, Embedded Artists AB
+ *   All rights reserved.
+ *
+ ******************************************************************************/
+
+#include "Display_Ctrl/Oled_Ctrl/Oled_Ctrl.h"
+#include "Display_Ctrl/Oled_Ctrl/Ssp_Ctrl/Ssp_Ctrl.h"
+
+int main (void)
+{
+//	command_init();
+	Ssp_Ctrl_Init();
+	oled_init();
+	oled_clearScreen(OLED_COLOR_BLACK);
+	oled_putString(1, 1,(uint8_t *)"Eae galerinha!!",OLED_COLOR_WHITE, OLED_COLOR_BLACK);
+	oled_putString(1, 5,(uint8_t *)"Blz????",OLED_COLOR_WHITE, OLED_COLOR_BLACK);
+	oled_putString(1, 10,(uint8_t *)"Bora Programar!!",OLED_COLOR_WHITE, OLED_COLOR_BLACK);
+
+	while(1)
+	{
+//		command_processLoop();
+//		display_processLoop();
+	}
+}
