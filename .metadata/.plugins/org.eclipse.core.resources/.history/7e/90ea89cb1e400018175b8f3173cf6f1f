@@ -83,71 +83,68 @@ uint8_t str2int(uint8_t *pucData)
 *********************************************************/
 void command_Init(void)
 {
-	enumCommandState  = CMMD_WAIT; // inicializa o controle de mensagens da uart para waiting
-	tagCommandsCtxt.uiCurrentCmndSize = 0; // tamanho da mensagem = 0
-	Usart_Ctrl_Init(); // inicializa a uart
+	enumCommandState  = CMMD_WAIT;
+	tagCommandsCtxt.uiCurrentCmndSize = 0;
+	Usart_Ctrl_Init();
 }
 
 void command_ProcessLoop(void)
 {
 	switch (enumCommandState) {
-		case CMMD_WAIT: // se estiver em waitng
-			tagCommandsCtxt.uiCurrentCmndSize = getData((uint8_t*)tagCommandsCtxt.pcBuff); // lê a mensagem da uart
-			if(tagCommandsCtxt.uiCurrentCmndSize > 0 && tagCommandsCtxt.uiCurrentCmndSize < 512) // verifica se tem uma mensagem de tamanho válido
+		case CMMD_WAIT:
+			tagCommandsCtxt.uiCurrentCmndSize = getData((uint8_t*)tagCommandsCtxt.pcBuff);
+			if(tagCommandsCtxt.uiCurrentCmndSize > 0 && tagCommandsCtxt.uiCurrentCmndSize < 512)
 			{
-				enumCommandState = CMMD_VALID; // seta o estado para válido
+				enumCommandState = CMMD_VALID;
 			}
 			break;
 
-		case CMMD_VALID: // Se o comando for valido
-			if( tagCommandsCtxt.uiCurrentCmndSize >= 4 ) // Se ele tiver mais que 4 caracteres
+		case CMMD_VALID:
+			if( tagCommandsCtxt.uiCurrentCmndSize >= 4 )
 			{
-				enumCommandState = CMMD_STRACT_DATA; // mudo o estado  para estrair data
+				enumCommandState = CMMD_STRACT_DATA;
 			}
 			else
 			{
-				enumCommandState = CMMD_WAIT; // muda o estado para waiting
+				enumCommandState = CMMD_WAIT;
 			}
 			break;
 
-		case CMMD_STRACT_DATA: // se o estado for estrarir data
-			// CC:PAYLOAD - > esse é o padrão do protocolo
-
-			for(i=0;i<2;i++) // pegar o comando
+		case CMMD_STRACT_DATA:
+			for(i=0;i<2;i++)
 			{
 				aux[i] =tagCommandsCtxt.pcBuff[i];
 			}
-			tagCommandsCtxt.ucCurrentCommand = str2int((uint8_t*)aux); // passa o comando para inteiro
+			tagCommandsCtxt.ucCurrentCommand = str2int((uint8_t*)aux);
 
-			for(i=0;i<tagCommandsCtxt.uiCurrentCmndSize-2;i++) // pega o valor do payload
+			for(i=0;i<tagCommandsCtxt.uiCurrentCmndSize-2;i++)
 			{
 				tagCommandsCtxt.pcBuff[i] = tagCommandsCtxt.pcBuff[i+3];
 			}
 
-			enumCommandState = CMMD_PARSE; // muda o estado para parse
+			enumCommandState = CMMD_PARSE;
 			break;
 
-		case CMMD_PARSE: // se o estado for parse
+		case CMMD_PARSE:
 			switch (tagCommandsCtxt.ucCurrentCommand)
 			{
-				case CMMD_MAX_TEMP: // se o comando for de temperatura
+				case CMMD_MAX_TEMP:
 					if(strlen(tagCommandsCtxt.pcBuff) > 0)
 					{
-						Display_State_setMaxValue2Temp(strtoul(tagCommandsCtxt.pcBuff, 0, 10)); // seta o valor máximo de temperatura para o progress bar da Web
-						memset(tagCommandsCtxt.pcBuff,'\0',COMMANDS_MAX_BUFF_SIZE); // limpa o buffer
+						Display_State_setMaxValue2Temp(strtoul(tagCommandsCtxt.pcBuff, 0, 10));
+						memset(tagCommandsCtxt.pcBuff,'\0',COMMANDS_MAX_BUFF_SIZE);
 					}
 					break;
 
-				case CMMD_MAX_LIGHT: // se o comando for de luz
-					Display_State_setMaxValue2Light(strtoul(tagCommandsCtxt.pcBuff, NULL, 10)); // seta o valor máximo em lumininosidade para o progress bar da Web
-					memset(tagCommandsCtxt.pcBuff,'\0',COMMANDS_MAX_BUFF_SIZE); // limpa o buffer
+				case CMMD_MAX_LIGHT:
+					Display_State_setMaxValue2Light(strtoul(tagCommandsCtxt.pcBuff, NULL, 10));
 					break;
 
 				default:
 					break;
 			}
 
-			enumCommandState = CMMD_WAIT; // Muda o estado para wait
+			enumCommandState = CMMD_WAIT;
 			break;
 
 		default:

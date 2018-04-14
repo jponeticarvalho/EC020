@@ -147,7 +147,7 @@ void command_ProcessLoop(void)
 					break;
 			}
 
-			enumCommandState = CMMD_WAIT; // Muda o estado para wait
+			enumCommandState = CMMD_WAIT; // Muda o estado para wiat
 			break;
 
 		default:

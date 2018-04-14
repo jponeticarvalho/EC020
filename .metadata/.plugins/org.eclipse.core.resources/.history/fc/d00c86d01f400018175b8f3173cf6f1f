@@ -16,23 +16,23 @@ void peripheralInit(void);
 
 int main (void)
 {
-	peripheralInit(); // Habilita o Clock no GPIO
-	Timer_init(); // Habilita o contador de meio milisegundos desde que o começou a execução
-	Display_Ctrl_Init(); // Habilita o controle do display
-	command_Init(); // Inicializa o controle de protocolo
-	EasyWeb_Ctrl_Init(); // inicializa a Web
+	peripheralInit();
+	Timer_init();
+	Display_Ctrl_Init();
+	command_Init();
+	EasyWeb_Ctrl_Init();
 
 	while(1)
 	{
-		Display_Ctrl_ProcessLoop(); // Loop do display
-		command_ProcessLoop(); //  Loop do comando do protocolo da UART
-		EasyWeb_Ctrl_ProcessLoop(); // Loop da Easy Web
+		Display_Ctrl_ProcessLoop();
+		command_ProcessLoop();
+		EasyWeb_Ctrl_ProcessLoop();
 	}
 }
 
 void peripheralInit(void)
 {
 
-	CLKPWR_ConfigPPWR(CLKPWR_PCONP_PCGPIO, ENABLE);// FUNÇÃO DA MCU QUE HABILITA O CLOCK NA GPIO
+	CLKPWR_ConfigPPWR(CLKPWR_PCONP_PCGPIO, ENABLE);
 
 }
