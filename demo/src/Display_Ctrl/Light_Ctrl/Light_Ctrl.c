@@ -190,7 +190,7 @@ void Light_Ctrl_SetMode(light_mode_t mode)
 void Light_Ctrl_SetWidth(light_width_t newWidth)
 {
     uint8_t buf[2];
-    uint8_t cmd = readCommandReg();
+    uint8_t cmd = ReadCommandReg();
 
     /* clear width */
     cmd &= ~(3 << 0);
@@ -312,7 +312,7 @@ void Light_Ctrl_SetLoThreshold(uint32_t luxTh)
 void Light_Ctrl_SetIrqInCycles(light_cycle_t cycles)
 {
     uint8_t buf[2];
-    uint8_t ctrl = readControlReg();
+    uint8_t ctrl = ReadControlReg();
 
     /* clear irq */
     ctrl &= ~(CTRL_IRQ_FLAG);
@@ -335,7 +335,7 @@ void Light_Ctrl_SetIrqInCycles(light_cycle_t cycles)
  *****************************************************************************/
 uint8_t Light_Ctrl_GetIrqStatus(void)
 {
-    uint8_t ctrl = readControlReg();
+    uint8_t ctrl = ReadControlReg();
 
     return ((ctrl & CTRL_IRQ_FLAG) != 0);
 }
@@ -369,7 +369,7 @@ void Light_Ctrl_ClearIrqStatus(void)
 void Light_Ctrl_Shutdown(void)
 {
     uint8_t buf[2];
-    uint8_t cmd = readCommandReg();
+    uint8_t cmd = ReadCommandReg();
 
     /* first disable ADC code */
     cmd &= ~CMD_ENABLE;

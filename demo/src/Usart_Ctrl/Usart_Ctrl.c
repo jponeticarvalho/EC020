@@ -10,26 +10,45 @@
 /*********************************************************
     private constants.
 *********************************************************/
-
+#define USART_CTRL_MAX_BUFFER_SIZE			512
+#define USART_CTRL_TIME_END_PACKET			TIMER_200MS
 
 /*********************************************************
     private types.
 *********************************************************/
-
+typedef struct tag_UsartCtrl
+{
+	uint8_t				ucBufferRx[USART_CTRL_MAX_BUFFER_SIZE];
+	uint16_t			uiSizeRx;
+	uint32_t			ulReferenceTimer;
+}ttag_UsartCtrl;
 
 /*********************************************************
     private variable.
 *********************************************************/
+volatile ttag_UsartCtrl 			tagUsartCtrl;
+
 
 /*********************************************************
     private functions prototypes.
 *********************************************************/
 
 void Usart_Ctrl_Init_Hw(void);
+void cd(void);
 
 /*********************************************************
     private functions.
 *********************************************************/
+
+void cb(void)
+{
+	if(tagUsartCtrl.uiSizeRx < USART_CTRL_MAX_BUFFER_SIZE)
+	{
+		tagUsartCtrl.ucBufferRx[tagUsartCtrl.uiSizeRx++] = (uint8_t) UART_ReceiveData(USARTx);
+		tagUsartCtrl.ulReferenceTimer = Timer_getTimer();
+	}
+	else UART_ReceiveData(USARTx); /* Discard */
+}
 
 void Usart_Ctrl_Init_Hw(void)
 {
@@ -56,6 +75,25 @@ void Usart_Ctrl_Init_Hw(void)
 	UART_Init(USARTx, &uartCfg);
 	UART_TxCmd(USARTx, ENABLE);
 
+	UART_IntConfig(USARTx, UART_INTCFG_RBR, ENABLE);
+	NVIC_EnableIRQ(USARTx_IRQn);
+
+	UART_SetupCbs(USARTx, 0, &cb);
+
+}
+
+void UART3_IRQHandler()
+{
+
+	if(tagUsartCtrl.uiSizeRx < USART_CTRL_MAX_BUFFER_SIZE)
+	{
+		tagUsartCtrl.ucBufferRx[tagUsartCtrl.uiSizeRx++] = (uint8_t) UART_ReceiveData(USARTx);
+		tagUsartCtrl.ulReferenceTimer = Timer_getTimer();
+	}
+	else UART_ReceiveData(USARTx); /* Discard */
+
+//	UART3_StdIntHandler();
+
 }
 
 /*********************************************************
@@ -64,7 +102,27 @@ void Usart_Ctrl_Init_Hw(void)
 
 void Usart_Ctrl_Init()
 {
+	tagUsartCtrl.uiSizeRx = 0;
 	Usart_Ctrl_Init_Hw();
+}
+
+uint16_t Usart_Ctrl_getData(uint8_t *pucData)
+{
+	if(!pucData)return 0;
+
+	uint16_t uiAux = 0;
+
+	if(tagUsartCtrl.uiSizeRx)
+	{
+		if(Timer_checkTimeout(tagUsartCtrl.ulReferenceTimer, USART_CTRL_TIME_END_PACKET))
+		{
+			memcpy(pucData, tagUsartCtrl.ucBufferRx, tagUsartCtrl.uiSizeRx);
+			uiAux = tagUsartCtrl.uiSizeRx;
+			tagUsartCtrl.uiSizeRx = 0;
+		}
+	}
+
+	return uiAux;
 }
 
 void Usart_Ctrl_SendData(LPC_UART_TypeDef* UARTx, uint8_t *pucData, uint32_t uiDataLen)
@@ -74,10 +132,7 @@ void Usart_Ctrl_SendData(LPC_UART_TypeDef* UARTx, uint8_t *pucData, uint32_t uiD
 
 	uint32_t uiCounter = 0;
 
-	while( uiCounter < uiDataLen )
-	{
-		UART_SendData(UARTx, pucData[uiCounter++]);
-	}
+	UART_Send(USARTx, pucData, uiDataLen, NONE_BLOCKING);
 
 }
 

@@ -8,6 +8,8 @@
 #ifndef DISPLAY_STATE_H_
 #define DISPLAY_STATE_H_
 
+#include "../Common.h"
+
 typedef enum enu_displayState
 {
 	DISPLAY_STATE_WAINTING = 0,

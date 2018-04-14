@@ -1,0 +1,172 @@
+/*
+ * Usart_Ctrl.c
+ *
+ *  Created on: 02/04/2018
+ *      Author: jpone
+ */
+#include "Usart_Ctrl.h"
+#include "../PinDefinition.h"
+
+/*********************************************************
+    private constants.
+*********************************************************/
+#define RX_TRIGGER_ONE          0x0
+#define RX_TRIGGER_FOUR         0x1
+#define RX_TRIGGER_EIGHT        0x2
+#define RX_TRIGGER_FOURTEEN     0x3
+#define RX_TRIGGER_LEVEL        RX_TRIGGER_FOURTEEN
+#define RLS_INTERRUPT           0x03
+#define RDA_INTERRUPT           0x02
+#define CTI_INTERRUPT           0x06
+#define THRE_INTERRUPT          0x01
+#define LSR_RDR                 (1<<0)
+#define LSR_OE                  (1<<1)
+#define LSR_PE                  (1<<2)
+#define LSR_FE                  (1<<3)
+#define LSR_BI                  (1<<4)
+#define LSR_THRE                (1<<5)
+#define LSR_TEMT                (1<<6)
+#define LSR_RXFE                (1<<7)
+
+
+/*********************************************************
+    private types.
+*********************************************************/
+
+
+/*********************************************************
+    private variable.
+*********************************************************/
+
+/*********************************************************
+    private functions prototypes.
+*********************************************************/
+
+void Usart_Ctrl_Init_Hw(void);
+static inline void uart3_interruptsOn(void);
+static inline void uart3_interruptsOff(void);
+
+/*********************************************************
+    private functions.
+*********************************************************/
+
+void Usart_Ctrl_Init_Hw(void)
+{
+
+	PINSEL_CFG_Type PinCfg;
+	UART_CFG_Type uartCfg;
+
+	/* Initialize UART3 pin connect */
+	PinCfg.Funcnum = PIN_DEFINITION_USART_TX_FUNC_NUM;//2;
+	PinCfg.Pinnum = PIN_DEFINITION_USART_TX_PIN_NUM;//0;
+	PinCfg.Portnum = PIN_DEFINITION_USART_TX_PORT_NUM;//0;
+	PINSEL_ConfigPin(&PinCfg);
+
+	PinCfg.Funcnum = PIN_DEFINITION_USART_RX_FUNC_NUM;//2;
+	PinCfg.Pinnum = PIN_DEFINITION_USART_RX_PIN_NUM;//0;
+	PinCfg.Portnum = PIN_DEFINITION_USART_RX_PORT_NUM;//0;
+	PINSEL_ConfigPin(&PinCfg);
+
+	uartCfg.Baud_rate 	= USART_CTRL_BAUDRATE;
+	uartCfg.Databits	= USART_CTRL_DATA_BITS;
+	uartCfg.Parity 		= USART_CTRL_PARITY;
+	uartCfg.Stopbits 	= USART_CTRL_STOP_BITS;
+
+	UART_Init(USARTx, &uartCfg);
+	UART_TxCmd(USARTx, ENABLE);
+
+	UART_IntConfig(LPC_UART_TypeDef *UARTx, UART_INT_Type UARTIntCfg, FunctionalState NewState);
+	NVIC_EnableIRQ(UARTx_IRQn)
+
+}
+
+static inline void uart3_interruptsOn(void) {
+	USARTx->IER = 0x07; // RBR, THRE, RLS
+}
+
+static inline void uart3_interruptsOff(void) {
+	USARTx->IER = 0x00; // !RBR, !THRE, !RLS
+}
+
+
+void UART3_IRQHandler()
+{
+
+	uint8_t intId;  // interrupt identification
+	uint8_t lsrReg; // line status register
+
+	// get the interrupt identification from the IIR register
+	intId = ((USARTx->IIR) >> 1) & 0x7;
+
+	// RLS (receive line status) interrupt
+	if ( intId == RLS_INTERRUPT ) {
+		// get line status register value (clears interrupt)
+		lsrReg = LPC_UART3->LSR;
+
+		// determine type of error and set Rx status accordingly
+		if (lsrReg & LSR_OE)
+			uart3_rx_sts = UART3_OVERFLOW; // won't happen when using SW fifo
+		else if (lsrReg & LSR_PE)
+			uart3_rx_sts = UART3_PARITY_ERROR;
+		else if (lsrReg & LSR_FE)
+			uart3_rx_sts = UART3_FRAMING_ERROR;
+		else if (lsrReg & LSR_BI)
+			uart3_rx_sts = UART3_BREAK_DETECTED;
+	}
+
+}
+
+/*********************************************************
+    public functions.
+*********************************************************/
+
+void Usart_Ctrl_Init()
+{
+	Usart_Ctrl_Init_Hw();
+}
+
+void Usart_Ctrl_SendData(LPC_UART_TypeDef* UARTx, uint8_t *pucData, uint32_t uiDataLen)
+{
+
+	if(!pucData) return;
+
+	uint32_t uiCounter = 0;
+
+	while( uiCounter < uiDataLen )
+	{
+		UART_SendData(UARTx, pucData[uiCounter++]);
+	}
+
+}
+
+void Usart_Ctrl_ReceiveData(LPC_UART_TypeDef* UARTx, uint8_t *pucData, uint32_t uiDataLen)
+{
+
+	if(!pucData) return;
+
+	uint32_t uiCounter = 0;
+
+	while( uiCounter < uiDataLen )
+	{
+		pucData[++uiCounter] = UART_ReceiveData(UARTx);
+	}
+
+}
+
+void Usart_Ctrl_ReceiveLine(LPC_UART_TypeDef* UARTx, uint8_t *pucData)
+{
+
+	if(!pucData) return;
+
+	uint32_t uiCounter = 0;
+
+	pucData[uiCounter] = UART_ReceiveData(UARTx);
+
+	while( pucData[uiCounter] != '\n' && pucData[uiCounter] != '\r' )
+	{
+
+		pucData[++uiCounter] = UART_ReceiveData(UARTx);
+
+	}
+
+}

@@ -1,0 +1,74 @@
+/*
+ * Command.c
+ *
+ *  Created on: 03/04/2018
+ *      Author: jpone
+ */
+
+
+/*********************************************************
+    private constants.
+*********************************************************/
+
+
+/*********************************************************
+    private types.
+*********************************************************/
+typedef enum enum_CommandState
+{
+	CMMD_WAIT = 0,
+	CMND_VALID,
+	CMND_STRACT_DATA,
+	CMND_PARSE
+} tenum_CommandState;
+
+/*********************************************************
+    private variable.
+*********************************************************/
+static tenum_CommandState enumCommandState;
+
+static struct tag_CommandsCtxt
+{
+	uint8_t  			ucCurrentCommand;
+	uint16_t 			uiCurrentCmndSize;
+	int 			iCurrentRespLen;
+	char* 			pcCurrentData;
+	char 			pcBuff[COMMANDS_MAX_BUFF_SIZE];
+	char 			pcRespBuff[RESPONSE_MAX_BUFF_SIZE];
+}tagCommandsCtxt;
+
+/*********************************************************
+    private functions prototypes.
+*********************************************************/
+
+
+
+/*********************************************************
+    private functions.
+*********************************************************/
+
+
+/*********************************************************
+    public functions.
+*********************************************************/
+void command_Init(void)
+{
+	enu_commandState  = CMND_WAIT;
+	tagCommandsCtxt.uiCurrentCmndSize = 0;
+	Usart_Ctrl_Init();
+}
+
+void command_ProcessLoop(void)
+{
+	switch (enumCommandState) {
+		case CMMD_WAIT:
+			tagCommandsCtxt.uiCurrentCmndSize = getData((uint8_t*)tagCommandsCtxt.pcBuff);
+			if(tagCommandsCtxt.uiCurrentCmndSize > 0 && tagCommandsCtxt.uiCurrentCmndSize < 512)
+			{
+				enu_commandState = CMND_VALID;
+			}
+			break;
+		default:
+			break;
+	}
+}

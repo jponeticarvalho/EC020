@@ -33,7 +33,7 @@ void Display_Ctrl_Init(void)
 	strncpy((char*)tagScreenStrings.screenString_Line2,(const char*)"|    EC020:   |",strlen((char*)"|    EC020:   |"));
 	strncpy((char*)tagScreenStrings.screenString_Line3,(const char*)"|Fer Avelar,  |",strlen((char*)"|Fer Avelar,  |"));
 	strncpy((char*)tagScreenStrings.screenString_Line4,(const char*)"|Joao Pedro,  |",strlen((char*)"|Joao Pedro,  |"));
-	strncpy((char*)tagScreenStrings.screenString_Line5,(const char*)"|Karla,       |",strlen((char*)"|Karla,       |"));
+	strncpy((char*)tagScreenStrings.screenString_Line5,(const char*)"|Karla Carmo, |",strlen((char*)"|Karla Carmo, |"));
 	strncpy((char*)tagScreenStrings.screenString_Line6,(const char*)"|Lucas Gaspar.|",strlen((char*)"|Lucas Gaspar.|"));
 	strncpy((char*)tagScreenStrings.screenString_Line7,(const char*)"---------------",strlen((char*)"---------------"));
 
@@ -60,7 +60,7 @@ void Display_Ctrl_ProcessLoop()
 				strncpy((char*)tagScreenStrings.screenString_Line2,(const char*)"|    EC020:   |",strlen((char*)"|    EC020:   |"));
 				strncpy((char*)tagScreenStrings.screenString_Line3,(const char*)"|Fer Avelar,  |",strlen((char*)"|Fer Avelar,  |"));
 				strncpy((char*)tagScreenStrings.screenString_Line4,(const char*)"|Joao Pedro,  |",strlen((char*)"|Joao Pedro,  |"));
-				strncpy((char*)tagScreenStrings.screenString_Line5,(const char*)"|Karla,       |",strlen((char*)"|Karla,       |"));
+				strncpy((char*)tagScreenStrings.screenString_Line5,(const char*)"|Karla Carmo, |",strlen((char*)"|Karla Carmo, |"));
 				strncpy((char*)tagScreenStrings.screenString_Line6,(const char*)"|Lucas Gaspar.|",strlen((char*)"|Lucas Gaspar.|"));
 				strncpy((char*)tagScreenStrings.screenString_Line7,(const char*)"---------------",strlen((char*)"---------------"));
 

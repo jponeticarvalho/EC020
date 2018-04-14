@@ -7,11 +7,13 @@
 
 #include "lpc17xx_uart.h"
 #include "lpc17xx_pinsel.h"
+#include "../System/Timer.h"
 
 #ifndef USART_CTRL_H_
 #define USART_CTRL_H_
 
 #define USARTx					LPC_UART3
+#define USARTx_IRQn				UART3_IRQn
 
 #define USART_CTRL_BAUDRATE		115200
 #define USART_CTRL_DATA_BITS	UART_DATABIT_8

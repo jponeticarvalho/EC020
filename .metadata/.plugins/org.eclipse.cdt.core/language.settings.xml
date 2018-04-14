@@ -78,7 +78,37 @@
 					<entry kind="macro" name="__NEWLIB__" value=""/>
 					<entry kind="macro" name="__USE_CMSIS" value="CMSISv1p30_LPC17xx"/>
 				</resource>
+				<resource project-relative-path="src/EasyWeb_Ctrl/ethmac.c">
+					<entry kind="includePath" name="/Lib_CMSISv1p30_LPC17xx/inc">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
+					<entry kind="includePath" name="/Lib_EaBaseBoard/inc">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
+					<entry kind="includePath" name="/Lib_MCU/inc">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
+					<entry kind="macro" name="DEBUG" value=""/>
+					<entry kind="macro" name="__CODE_RED" value=""/>
+					<entry kind="macro" name="__NEWLIB__" value=""/>
+					<entry kind="macro" name="__USE_CMSIS" value="CMSISv1p30_LPC17xx"/>
+				</resource>
 				<resource project-relative-path="src/Display_Ctrl/Display_State.c">
+					<entry kind="includePath" name="/Lib_CMSISv1p30_LPC17xx/inc">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
+					<entry kind="includePath" name="/Lib_EaBaseBoard/inc">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
+					<entry kind="includePath" name="/Lib_MCU/inc">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
+					<entry kind="macro" name="DEBUG" value=""/>
+					<entry kind="macro" name="__CODE_RED" value=""/>
+					<entry kind="macro" name="__NEWLIB__" value=""/>
+					<entry kind="macro" name="__USE_CMSIS" value="CMSISv1p30_LPC17xx"/>
+				</resource>
+				<resource project-relative-path="src/EasyWeb_Ctrl/easyweb.c">
 					<entry kind="includePath" name="/Lib_CMSISv1p30_LPC17xx/inc">
 						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
 					</entry>
@@ -168,6 +198,21 @@
 					<entry kind="macro" name="__NEWLIB__" value=""/>
 					<entry kind="macro" name="__USE_CMSIS" value="CMSISv1p30_LPC17xx"/>
 				</resource>
+				<resource project-relative-path="src/EasyWeb_Ctrl/EasyWeb.c">
+					<entry kind="includePath" name="/Lib_CMSISv1p30_LPC17xx/inc">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
+					<entry kind="includePath" name="/Lib_EaBaseBoard/inc">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
+					<entry kind="includePath" name="/Lib_MCU/inc">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
+					<entry kind="macro" name="DEBUG" value=""/>
+					<entry kind="macro" name="__CODE_RED" value=""/>
+					<entry kind="macro" name="__NEWLIB__" value=""/>
+					<entry kind="macro" name="__USE_CMSIS" value="CMSISv1p30_LPC17xx"/>
+				</resource>
 				<resource project-relative-path="src/cr_startup_lpc17.c">
 					<entry kind="includePath" name="/Lib_CMSISv1p30_LPC17xx/inc">
 						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
@@ -229,6 +274,21 @@
 					<entry kind="macro" name="__USE_CMSIS" value="CMSISv1p30_LPC17xx"/>
 				</resource>
 				<resource project-relative-path="src/Usart_Ctrl/Command/Command.c">
+					<entry kind="includePath" name="/Lib_CMSISv1p30_LPC17xx/inc">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
+					<entry kind="includePath" name="/Lib_EaBaseBoard/inc">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
+					<entry kind="includePath" name="/Lib_MCU/inc">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
+					<entry kind="macro" name="DEBUG" value=""/>
+					<entry kind="macro" name="__CODE_RED" value=""/>
+					<entry kind="macro" name="__NEWLIB__" value=""/>
+					<entry kind="macro" name="__USE_CMSIS" value="CMSISv1p30_LPC17xx"/>
+				</resource>
+				<resource project-relative-path="src/EasyWeb_Ctrl/tcpip.c">
 					<entry kind="includePath" name="/Lib_CMSISv1p30_LPC17xx/inc">
 						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
 					</entry>

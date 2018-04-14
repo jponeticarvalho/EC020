@@ -741,8 +741,6 @@ void Oled_Ctrl_PutScreen(ttag_screenStrings tagScreenStrings, oled_color_t tagFo
 		oled_color_t tagBrackgroungColor)
 {
 
-//	Oled_Ctrl_VerifyStrings(tagScreenStrings);
-
 	Oled_Ctrl_PutString(1,  1,tagScreenStrings.screenString_Line1,tagFontColor, tagBrackgroungColor);
 	Oled_Ctrl_PutString(1,  9,tagScreenStrings.screenString_Line2,tagFontColor, tagBrackgroungColor);
 	Oled_Ctrl_PutString(1, 17,tagScreenStrings.screenString_Line3,tagFontColor, tagBrackgroungColor);
@@ -750,75 +748,5 @@ void Oled_Ctrl_PutScreen(ttag_screenStrings tagScreenStrings, oled_color_t tagFo
 	Oled_Ctrl_PutString(1, 33,tagScreenStrings.screenString_Line5,tagFontColor, tagBrackgroungColor);
 	Oled_Ctrl_PutString(1, 41,tagScreenStrings.screenString_Line6,tagFontColor, tagBrackgroungColor);
 	Oled_Ctrl_PutString(1, 49,tagScreenStrings.screenString_Line7,tagFontColor, tagBrackgroungColor);
-
-}
-
-uint8_t Oled_Ctrl_VerifyStrings(ttag_screenStrings tagScreenStrings)
-{
-
-	uint8_t ucCounter = 0;
-
-	if(strlen(tagScreenStrings.screenString_Line1) < SCREENSTRING_MAXLEN)
-	{
-		for( ucCounter = strlen(tagScreenStrings.screenString_Line1); ucCounter < SCREENSTRING_MAXLEN; ucCounter++ )
-		{
-			tagScreenStrings.screenString_Line1[ucCounter] = ' ';
-		}
-		tagScreenStrings.screenString_Line1[ucCounter] = '\0';
-	}
-
-	if(strlen(tagScreenStrings.screenString_Line2) < SCREENSTRING_MAXLEN)
-	{
-		for( ucCounter = strlen(tagScreenStrings.screenString_Line2); ucCounter < SCREENSTRING_MAXLEN; ucCounter++ )
-		{
-			tagScreenStrings.screenString_Line2[ucCounter] = ' ';
-		}
-		tagScreenStrings.screenString_Line2[ucCounter] = '\0';
-	}
-
-	if(strlen(tagScreenStrings.screenString_Line3) < SCREENSTRING_MAXLEN)
-	{
-		for( ucCounter = strlen(tagScreenStrings.screenString_Line3); ucCounter < SCREENSTRING_MAXLEN; ucCounter++ )
-		{
-			tagScreenStrings.screenString_Line3[ucCounter] = ' ';
-		}
-		tagScreenStrings.screenString_Line3[ucCounter] = '\0';
-	}
-
-	if(strlen(tagScreenStrings.screenString_Line4) < SCREENSTRING_MAXLEN)
-	{
-		for( ucCounter = strlen(tagScreenStrings.screenString_Line4); ucCounter < SCREENSTRING_MAXLEN; ucCounter++ )
-		{
-			tagScreenStrings.screenString_Line4[ucCounter] = ' ';
-		}
-		tagScreenStrings.screenString_Line4[ucCounter] = '\0';
-	}
-
-	if(strlen(tagScreenStrings.screenString_Line5) < SCREENSTRING_MAXLEN)
-	{
-		for( ucCounter = strlen(tagScreenStrings.screenString_Line5); ucCounter < SCREENSTRING_MAXLEN; ucCounter++ )
-		{
-			tagScreenStrings.screenString_Line5[ucCounter] = ' ';
-		}
-		tagScreenStrings.screenString_Line5[ucCounter] = '\0';
-	}
-
-	if(strlen(tagScreenStrings.screenString_Line6) < SCREENSTRING_MAXLEN)
-	{
-		for( ucCounter = strlen(tagScreenStrings.screenString_Line6); ucCounter < SCREENSTRING_MAXLEN; ucCounter++ )
-		{
-			tagScreenStrings.screenString_Line6[ucCounter] = ' ';
-		}
-		tagScreenStrings.screenString_Line6[ucCounter] = '\0';
-	}
-
-	if(strlen(tagScreenStrings.screenString_Line7) < SCREENSTRING_MAXLEN)
-	{
-		for( ucCounter = strlen(tagScreenStrings.screenString_Line7); ucCounter < SCREENSTRING_MAXLEN; ucCounter++ )
-		{
-			tagScreenStrings.screenString_Line7[ucCounter] = ' ';
-		}
-		tagScreenStrings.screenString_Line7[ucCounter] = '\0';
-	}
 
 }
