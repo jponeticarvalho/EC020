@@ -6,6 +6,7 @@
  */
 
 #include "Timer.h"
+#include "../EasyWeb_Ctrl/tcpip.h"
 
 /*********************************************************
     private constants.
@@ -20,6 +21,8 @@ typedef struct tag_Timer
 {
 	volatile uint32_t uiTimerCount;
 	volatile uint32_t uiTimerCountPar;
+	volatile uint32_t uiTimerCount10ms;
+	volatile uint32_t uiTimerCount10ms2;
 } ttag_Timer;
 
 /*********************************************************
@@ -43,6 +46,20 @@ void SysTick_Handler(void)
 	tagTimer.uiTimerCount++;
 	if(tagTimer.uiTimerCount%2 == 0)
 		tagTimer.uiTimerCountPar++;
+	if(tagTimer.uiTimerCountPar%10 == 0)
+	{
+		tagTimer.uiTimerCount10ms++;
+		tagTimer.uiTimerCount10ms2++;
+		// After 100 ticks (100 x 10ms = 1sec)
+		if (tagTimer.uiTimerCount10ms >= 100) {
+		  tagTimer.uiTimerCount10ms = 0;	// Reset counter
+		}
+		// After 20 ticks (20 x 10ms = 1/5sec)
+		if (tagTimer.uiTimerCount10ms2 >= 20) {
+		  tagTimer.uiTimerCount10ms2 = 0; // Reset counter
+		  TCPClockHandler();  // Call TCP handler
+		}
+	}
 }
 
 /*********************************************************
@@ -52,6 +69,8 @@ void SysTick_Handler(void)
 void Timer_init(void)
 {
 	tagTimer.uiTimerCount = 0;
+	tagTimer.uiTimerCountPar = 0;
+	tagTimer.uiTimerCount10ms = 0;
 	SysTick_Config(SystemCoreClock/2000);
 	NVIC_SetPriority(SysTick_IRQn, 0);
 }

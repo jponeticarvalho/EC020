@@ -8,6 +8,8 @@
 #include "Display_State.h"
 
 volatile tenu_displayState enuDisplayState;
+volatile uint32_t uiMaxValue2Temp = 100;
+volatile uint32_t uiMaxValue2Light = 4000;
 
 void Display_State_Init(void)
 {
@@ -34,4 +36,24 @@ void Display_State_Set(tenu_displayState enuNewDisplayState)
 tenu_displayState Display_State_Get()
 {
 	return enuDisplayState;
+}
+
+void Display_State_setMaxValue2Temp(uint32_t temp)
+{
+	uiMaxValue2Temp = temp;
+}
+
+uint32_t Display_State_getMaxValue2Temp()
+{
+	return uiMaxValue2Temp;
+}
+
+void Display_State_setMaxValue2Light(uint32_t light)
+{
+	uiMaxValue2Light = light;
+}
+
+uint32_t Display_State_getMaxValue2Light()
+{
+	return uiMaxValue2Light;
 }

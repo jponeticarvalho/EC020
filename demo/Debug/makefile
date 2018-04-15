@@ -11,6 +11,7 @@ RM := rm -rf
 -include src/Usart_Ctrl/Command/subdir.mk
 -include src/Usart_Ctrl/subdir.mk
 -include src/System/subdir.mk
+-include src/EasyWeb_Ctrl/subdir.mk
 -include src/Display_Ctrl/Temp_Ctrl/subdir.mk
 -include src/Display_Ctrl/Ssp_Ctrl/subdir.mk
 -include src/Display_Ctrl/Oled_Ctrl/subdir.mk
@@ -39,7 +40,7 @@ all: demo.axf
 demo.axf: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: MCU Linker'
-	arm-none-eabi-gcc -nostdlib -L"D:\Topicos Avancados\Lib_CMSISv1p30_LPC17xx\Debug" -L"D:\Topicos Avancados\Lib_EaBaseBoard\Debug" -L"D:\Topicos Avancados\Lib_MCU\Debug" -Xlinker --gc-sections -Xlinker -Map=demo.map -mcpu=cortex-m3 -mthumb -T "rdb1768cmsis_uart_Debug.ld" -o "demo.axf" $(OBJS) $(USER_OBJS) $(LIBS)
+	arm-none-eabi-gcc -nostdlib -L"D:\ProjetoLPC\Repositorio\EC020\Lib_CMSISv1p30_LPC17xx\Debug" -L"D:\ProjetoLPC\Repositorio\EC020\Lib_EaBaseBoard\Debug" -L"D:\ProjetoLPC\Repositorio\EC020\Lib_MCU\Debug" -Xlinker --gc-sections -Xlinker -Map=demo.map -mcpu=cortex-m3 -mthumb -T "demo_Debug.ld" -o "demo.axf" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 	$(MAKE) --no-print-directory post-build
