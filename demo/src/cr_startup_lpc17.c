@@ -99,7 +99,7 @@ void SSP0_IRQHandler(void) ALIAS(IntDefaultHandler);
 void SSP1_IRQHandler(void) ALIAS(IntDefaultHandler);
 void PLL0_IRQHandler(void) ALIAS(IntDefaultHandler);
 void RTC_IRQHandler(void) ALIAS(IntDefaultHandler);
-WEAK void EINT0_IRQHandler(void) ALIAS(IntDefaultHandler);
+void EINT0_IRQHandler(void) ALIAS(IntDefaultHandler);
 void EINT1_IRQHandler(void) ALIAS(IntDefaultHandler);
 void EINT2_IRQHandler(void) ALIAS(IntDefaultHandler);
 void EINT3_IRQHandler(void) ALIAS(IntDefaultHandler);
@@ -116,6 +116,10 @@ void QEI_IRQHandler(void) ALIAS(IntDefaultHandler);
 void PLL1_IRQHandler(void) ALIAS(IntDefaultHandler);
 void USBActivity_IRQHandler(void) ALIAS(IntDefaultHandler);
 void CANActivity_IRQHandler(void) ALIAS(IntDefaultHandler);
+
+extern void xPortSysTickHandler(void);
+extern void xPortPendSVHandler(void);
+extern void vPortSVCHandler( void );
 
 //*****************************************************************************
 //
@@ -160,11 +164,11 @@ void (* const g_pfnVectors[])(void) = {
 	0,										// Reserved
 	0,										// Reserved
 	0,										// Reserved
-	SVCall_Handler,							// SVCall handler
+	vPortSVCHandler,                        // SVCall handler
 	DebugMon_Handler,						// Debug monitor handler
 	0,										// Reserved
-	PendSV_Handler,							// The PendSV handler
-	SysTick_Handler,						// The SysTick handler
+	xPortPendSVHandler,                     // The PendSV handler
+	xPortSysTickHandler,                    // The SysTick handler
 
 	// Chip Level - LPC17
 	WDT_IRQHandler,							// 16, 0x40 - WDT
@@ -341,9 +345,9 @@ void PendSV_Handler(void)
 
 //void SysTick_Handler(void)
 //{
-//	while(1)
-//	{
-//	}
+//    while(1)
+//    {
+//    }
 //}
 
 

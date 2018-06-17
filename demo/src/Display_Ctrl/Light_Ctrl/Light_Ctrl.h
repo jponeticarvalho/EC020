@@ -9,6 +9,7 @@
 #define LIGHT_CTRL_H_
 
 #include "../I2c_Ctrl/I2c_Ctrl.h"
+#include "../../Common.h"
 
 typedef enum
 {
@@ -54,5 +55,7 @@ void 		Light_Ctrl_SetIrqInCycles(light_cycle_t cycles);
 uint8_t 	Light_Ctrl_GetIrqStatus(void);
 void 		Light_Ctrl_ClearIrqStatus(void);
 void 		Light_Ctrl_Shutdown(void);
+void 		Light_Ctrl_setCallback(pvCallback callback);
+void 		Light_Ctrl_Task( void *pvParameters);
 
 #endif /* LIGHT_CTRL_H_ */

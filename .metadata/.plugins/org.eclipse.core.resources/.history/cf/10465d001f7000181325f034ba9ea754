@@ -1,0 +1,35 @@
+/*
+ * Common.h
+ *
+ *  Created on: 03/04/2018
+ *      Author: jpone
+ */
+
+#ifndef COMMON_H_
+#define COMMON_H_
+
+#include "LPC17xx.h"
+#include "PinDefinition.h"
+#include "lpc_types.h"
+#include <stdio.h>
+#include <stdint.h>
+#include <string.h>
+
+typedef enum enuSource
+{
+	TEMP,
+	LIGHT,
+	BUT,
+} tenuSource;
+
+typedef struct tagMessage
+{
+
+	tenuSource 	enuSource;
+	uint32_t	ulPayload;
+
+} ttagMessage;
+
+typedef void (*callback_t)(ttagMessage tagMsg)
+
+#endif /* COMMON_H_ */

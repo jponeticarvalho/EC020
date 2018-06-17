@@ -57,7 +57,7 @@
 /******************************************************************************
  * Local variables
  *****************************************************************************/
-
+static pvCallback lightCallback;
 static uint32_t range = RANGE_K1;
 static uint32_t width = WIDTH_16_VAL;
 
@@ -349,7 +349,7 @@ uint8_t Light_Ctrl_GetIrqStatus(void)
 void Light_Ctrl_ClearIrqStatus(void)
 {
     uint8_t buf[2];
-    uint8_t ctrl = readControlReg();
+    uint8_t ctrl = ReadControlReg();
 
     /* clear irq */
     ctrl &= ~(CTRL_IRQ_FLAG);
@@ -383,4 +383,31 @@ void Light_Ctrl_Shutdown(void)
     buf[0] = ADDR_CMD;
     buf[1] = cmd;
     I2c_Ctrl_Write(LIGHT_I2C_ADDR, buf, 2);
+}
+
+void Light_Ctrl_setCallback(pvCallback callback)
+{
+	if(callback != NULL)
+	{
+		lightCallback = callback;
+	}
+}
+
+void Light_Ctrl_Task( void *pvParameters)
+{
+	ttagMessage tagMsg;
+
+	while(1)
+	{
+		memset(&tagMsg, 0x00, sizeof(tagMsg));
+		tagMsg.enuSource = SRC_LIGHT;
+		tagMsg.ulPayload = (uint32_t)Light_Ctrl_Read();
+
+		if(lightCallback != NULL)
+		{
+			lightCallback(tagMsg);
+		}
+
+		vTaskDelay(LIGHT_SENSORS_READ_TIME);
+	}
 }

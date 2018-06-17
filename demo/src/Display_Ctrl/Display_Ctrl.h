@@ -15,7 +15,9 @@
 #include "Ssp_Ctrl/Ssp_Ctrl.h"
 #include "Button_Ctrl/Button_Ctrl.h"
 #include "Display_State.h"
-#include "../System/Timer.h"
+#include "Timer/Timer.h"
+
+xQueueHandle Display_Ctrl_queue;
 
 void Display_Ctrl_Init(void);
 void Display_Ctrl_ProcessLoop();

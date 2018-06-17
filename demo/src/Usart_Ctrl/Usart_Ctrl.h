@@ -7,7 +7,7 @@
 
 #include "lpc17xx_uart.h"
 #include "lpc17xx_pinsel.h"
-#include "../System/Timer.h"
+#include "Timer/Timer.h"
 
 #ifndef USART_CTRL_H_
 #define USART_CTRL_H_
@@ -21,6 +21,7 @@
 #define USART_CTRL_STOP_BITS	UART_STOPBIT_1
 
 void Usart_Ctrl_Init();
+uint16_t Usart_Ctrl_getData(uint8_t *pucData);
 void Usart_Ctrl_SendData(LPC_UART_TypeDef* UARTx, uint8_t *pucData, uint32_t uiDataLen);
 void Usart_Ctrl_ReceiveData(LPC_UART_TypeDef* UARTx, uint8_t *pucData, uint32_t uiDataLen);
 void Usart_Ctrl_ReceiveLine(LPC_UART_TypeDef* UARTx, uint8_t *pucData);

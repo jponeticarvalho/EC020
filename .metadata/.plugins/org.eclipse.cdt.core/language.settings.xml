@@ -7,6 +7,15 @@
 					<entry kind="includePath" name="/Lib_CMSISv1p30_LPC17xx/inc">
 						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
 					</entry>
+					<entry kind="includePath" name="/FreeRTOS_Library/portable">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
+					<entry kind="includePath" name="/FreeRTOS_Library/include">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
+					<entry kind="includePath" name="/FreeRTOS_Library/demo_code">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
 					<entry kind="includePath" name="/Lib_EaBaseBoard/inc">
 						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
 					</entry>
@@ -20,6 +29,15 @@
 				</resource>
 				<resource project-relative-path="src/Usart_Ctrl/Usart_Ctrl.c">
 					<entry kind="includePath" name="/Lib_CMSISv1p30_LPC17xx/inc">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
+					<entry kind="includePath" name="/FreeRTOS_Library/portable">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
+					<entry kind="includePath" name="/FreeRTOS_Library/include">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
+					<entry kind="includePath" name="/FreeRTOS_Library/demo_code">
 						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
 					</entry>
 					<entry kind="includePath" name="/Lib_EaBaseBoard/inc">
@@ -67,6 +85,15 @@
 					<entry kind="includePath" name="/Lib_CMSISv1p30_LPC17xx/inc">
 						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
 					</entry>
+					<entry kind="includePath" name="/FreeRTOS_Library/portable">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
+					<entry kind="includePath" name="/FreeRTOS_Library/include">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
+					<entry kind="includePath" name="/FreeRTOS_Library/demo_code">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
 					<entry kind="includePath" name="/Lib_EaBaseBoard/inc">
 						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
 					</entry>
@@ -78,8 +105,35 @@
 					<entry kind="macro" name="__NEWLIB__" value=""/>
 					<entry kind="macro" name="__USE_CMSIS" value="CMSISv1p30_LPC17xx"/>
 				</resource>
+				<resource project-relative-path="cr_startup_lpc17.c">
+					<entry kind="includePath" name="/FreeRTOS_Library/demo_code">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
+					<entry kind="includePath" name="/CMSISv1p30_LPC17xx/inc">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
+					<entry kind="includePath" name="/FreeRTOS_Library/include">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
+					<entry kind="includePath" name="/FreeRTOS_Library/portable">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
+					<entry kind="macro" name="DEBUG" value=""/>
+					<entry kind="macro" name="__CODE_RED" value=""/>
+					<entry kind="macro" name="__REDLIB__" value=""/>
+					<entry kind="macro" name="__USE_CMSIS" value="CMSISv1p30_LPC17xx"/>
+				</resource>
 				<resource project-relative-path="src/EasyWeb_Ctrl/ethmac.c">
 					<entry kind="includePath" name="/Lib_CMSISv1p30_LPC17xx/inc">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
+					<entry kind="includePath" name="/FreeRTOS_Library/portable">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
+					<entry kind="includePath" name="/FreeRTOS_Library/include">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
+					<entry kind="includePath" name="/FreeRTOS_Library/demo_code">
 						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
 					</entry>
 					<entry kind="includePath" name="/Lib_EaBaseBoard/inc">
@@ -95,6 +149,15 @@
 				</resource>
 				<resource project-relative-path="src/Display_Ctrl/Display_State.c">
 					<entry kind="includePath" name="/Lib_CMSISv1p30_LPC17xx/inc">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
+					<entry kind="includePath" name="/FreeRTOS_Library/portable">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
+					<entry kind="includePath" name="/FreeRTOS_Library/include">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
+					<entry kind="includePath" name="/FreeRTOS_Library/demo_code">
 						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
 					</entry>
 					<entry kind="includePath" name="/Lib_EaBaseBoard/inc">
@@ -127,6 +190,39 @@
 					<entry kind="includePath" name="/Lib_CMSISv1p30_LPC17xx/inc">
 						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
 					</entry>
+					<entry kind="includePath" name="/FreeRTOS_Library/portable">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
+					<entry kind="includePath" name="/FreeRTOS_Library/include">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
+					<entry kind="includePath" name="/FreeRTOS_Library/demo_code">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
+					<entry kind="includePath" name="/Lib_EaBaseBoard/inc">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
+					<entry kind="includePath" name="/Lib_MCU/inc">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
+					<entry kind="macro" name="DEBUG" value=""/>
+					<entry kind="macro" name="__CODE_RED" value=""/>
+					<entry kind="macro" name="__NEWLIB__" value=""/>
+					<entry kind="macro" name="__USE_CMSIS" value="CMSISv1p30_LPC17xx"/>
+				</resource>
+				<resource project-relative-path="src/Display_Ctrl/Temp_Ctrl/Temp_Ctrl.c">
+					<entry kind="includePath" name="/Lib_CMSISv1p30_LPC17xx/inc">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
+					<entry kind="includePath" name="/FreeRTOS_Library/portable">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
+					<entry kind="includePath" name="/FreeRTOS_Library/include">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
+					<entry kind="includePath" name="/FreeRTOS_Library/demo_code">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
 					<entry kind="includePath" name="/Lib_EaBaseBoard/inc">
 						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
 					</entry>
@@ -140,6 +236,15 @@
 				</resource>
 				<resource project-relative-path="src/Display_Ctrl/Ssp_Ctrl/Ssp_Ctrl.c">
 					<entry kind="includePath" name="/Lib_CMSISv1p30_LPC17xx/inc">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
+					<entry kind="includePath" name="/FreeRTOS_Library/portable">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
+					<entry kind="includePath" name="/FreeRTOS_Library/include">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
+					<entry kind="includePath" name="/FreeRTOS_Library/demo_code">
 						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
 					</entry>
 					<entry kind="includePath" name="/Lib_EaBaseBoard/inc">
@@ -168,23 +273,17 @@
 					<entry kind="macro" name="__NEWLIB__" value=""/>
 					<entry kind="macro" name="__USE_CMSIS" value="CMSISv1p30_LPC17xx"/>
 				</resource>
-				<resource project-relative-path="src/Display_Ctrl/Temp_Ctrl/Temp_Ctrl.c">
-					<entry kind="includePath" name="/Lib_CMSISv1p30_LPC17xx/inc">
-						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
-					</entry>
-					<entry kind="includePath" name="/Lib_EaBaseBoard/inc">
-						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
-					</entry>
-					<entry kind="includePath" name="/Lib_MCU/inc">
-						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
-					</entry>
-					<entry kind="macro" name="DEBUG" value=""/>
-					<entry kind="macro" name="__CODE_RED" value=""/>
-					<entry kind="macro" name="__NEWLIB__" value=""/>
-					<entry kind="macro" name="__USE_CMSIS" value="CMSISv1p30_LPC17xx"/>
-				</resource>
 				<resource project-relative-path="src/main.c">
 					<entry kind="includePath" name="/Lib_CMSISv1p30_LPC17xx/inc">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
+					<entry kind="includePath" name="/FreeRTOS_Library/portable">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
+					<entry kind="includePath" name="/FreeRTOS_Library/include">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
+					<entry kind="includePath" name="/FreeRTOS_Library/demo_code">
 						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
 					</entry>
 					<entry kind="includePath" name="/Lib_EaBaseBoard/inc">
@@ -202,6 +301,15 @@
 					<entry kind="includePath" name="/Lib_CMSISv1p30_LPC17xx/inc">
 						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
 					</entry>
+					<entry kind="includePath" name="/FreeRTOS_Library/portable">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
+					<entry kind="includePath" name="/FreeRTOS_Library/include">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
+					<entry kind="includePath" name="/FreeRTOS_Library/demo_code">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
 					<entry kind="includePath" name="/Lib_EaBaseBoard/inc">
 						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
 					</entry>
@@ -215,6 +323,15 @@
 				</resource>
 				<resource project-relative-path="src/cr_startup_lpc17.c">
 					<entry kind="includePath" name="/Lib_CMSISv1p30_LPC17xx/inc">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
+					<entry kind="includePath" name="/FreeRTOS_Library/portable">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
+					<entry kind="includePath" name="/FreeRTOS_Library/include">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
+					<entry kind="includePath" name="/FreeRTOS_Library/demo_code">
 						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
 					</entry>
 					<entry kind="includePath" name="/Lib_EaBaseBoard/inc">
@@ -262,6 +379,15 @@
 					<entry kind="includePath" name="/Lib_CMSISv1p30_LPC17xx/inc">
 						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
 					</entry>
+					<entry kind="includePath" name="/FreeRTOS_Library/portable">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
+					<entry kind="includePath" name="/FreeRTOS_Library/include">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
+					<entry kind="includePath" name="/FreeRTOS_Library/demo_code">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
 					<entry kind="includePath" name="/Lib_EaBaseBoard/inc">
 						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
 					</entry>
@@ -275,6 +401,15 @@
 				</resource>
 				<resource project-relative-path="src/Usart_Ctrl/Command/Command.c">
 					<entry kind="includePath" name="/Lib_CMSISv1p30_LPC17xx/inc">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
+					<entry kind="includePath" name="/FreeRTOS_Library/portable">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
+					<entry kind="includePath" name="/FreeRTOS_Library/include">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
+					<entry kind="includePath" name="/FreeRTOS_Library/demo_code">
 						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
 					</entry>
 					<entry kind="includePath" name="/Lib_EaBaseBoard/inc">
@@ -292,6 +427,15 @@
 					<entry kind="includePath" name="/Lib_CMSISv1p30_LPC17xx/inc">
 						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
 					</entry>
+					<entry kind="includePath" name="/FreeRTOS_Library/portable">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
+					<entry kind="includePath" name="/FreeRTOS_Library/include">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
+					<entry kind="includePath" name="/FreeRTOS_Library/demo_code">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
 					<entry kind="includePath" name="/Lib_EaBaseBoard/inc">
 						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
 					</entry>
@@ -303,8 +447,35 @@
 					<entry kind="macro" name="__NEWLIB__" value=""/>
 					<entry kind="macro" name="__USE_CMSIS" value="CMSISv1p30_LPC17xx"/>
 				</resource>
+				<resource project-relative-path="main.c">
+					<entry kind="includePath" name="/FreeRTOS_Library/demo_code">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
+					<entry kind="includePath" name="/CMSISv1p30_LPC17xx/inc">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
+					<entry kind="includePath" name="/FreeRTOS_Library/include">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
+					<entry kind="includePath" name="/FreeRTOS_Library/portable">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
+					<entry kind="macro" name="DEBUG" value=""/>
+					<entry kind="macro" name="__CODE_RED" value=""/>
+					<entry kind="macro" name="__REDLIB__" value=""/>
+					<entry kind="macro" name="__USE_CMSIS" value="CMSISv1p30_LPC17xx"/>
+				</resource>
 				<resource project-relative-path="src/Display_Ctrl/Light_Ctrl/Light_Ctrl.c">
 					<entry kind="includePath" name="/Lib_CMSISv1p30_LPC17xx/inc">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
+					<entry kind="includePath" name="/FreeRTOS_Library/portable">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
+					<entry kind="includePath" name="/FreeRTOS_Library/include">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
+					<entry kind="includePath" name="/FreeRTOS_Library/demo_code">
 						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
 					</entry>
 					<entry kind="includePath" name="/Lib_EaBaseBoard/inc">
@@ -322,6 +493,15 @@
 					<entry kind="includePath" name="/Lib_CMSISv1p30_LPC17xx/inc">
 						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
 					</entry>
+					<entry kind="includePath" name="/FreeRTOS_Library/portable">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
+					<entry kind="includePath" name="/FreeRTOS_Library/include">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
+					<entry kind="includePath" name="/FreeRTOS_Library/demo_code">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
 					<entry kind="includePath" name="/Lib_EaBaseBoard/inc">
 						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
 					</entry>
@@ -335,6 +515,15 @@
 				</resource>
 				<resource project-relative-path="src/Display_Ctrl/Oled_Ctrl/Fonte5x7.c">
 					<entry kind="includePath" name="/Lib_CMSISv1p30_LPC17xx/inc">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
+					<entry kind="includePath" name="/FreeRTOS_Library/portable">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
+					<entry kind="includePath" name="/FreeRTOS_Library/include">
+						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+					</entry>
+					<entry kind="includePath" name="/FreeRTOS_Library/demo_code">
 						<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
 					</entry>
 					<entry kind="includePath" name="/Lib_EaBaseBoard/inc">

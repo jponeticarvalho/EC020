@@ -1,26 +1,6 @@
-15:06:11 **** Incremental Build of configuration Debug for project demo ****
+22:31:14 **** Incremental Build of configuration Debug for project demo ****
 make all 
-Building file: ../src/EasyWeb_Ctrl/EasyWeb.c
-Invoking: MCU C Compiler
-arm-none-eabi-gcc -DDEBUG -D__USE_CMSIS=CMSISv1p30_LPC17xx -D__CODE_RED -D__NEWLIB__ -I"D:\ProjetoLPC\Repositorio\EC020\Lib_CMSISv1p30_LPC17xx\inc" -I"D:\ProjetoLPC\Repositorio\EC020\Lib_EaBaseBoard\inc" -I"D:\ProjetoLPC\Repositorio\EC020\Lib_MCU\inc" -O0 -g3 -Wall -c -fmessage-length=0 -fno-builtin -ffunction-sections -mcpu=cortex-m3 -mthumb -MMD -MP -MF"src/EasyWeb_Ctrl/EasyWeb.d" -MT"src/EasyWeb_Ctrl/EasyWeb.d" -o "src/EasyWeb_Ctrl/EasyWeb.o" "../src/EasyWeb_Ctrl/EasyWeb.c"
-../src/EasyWeb_Ctrl/EasyWeb.c: In function 'InsertDynamicValues':
-../src/EasyWeb_Ctrl/EasyWeb.c:235:8: warning: implicit declaration of function 'Temp_Read' [-Wimplicit-function-declaration]
-../src/EasyWeb_Ctrl/EasyWeb.c:242:8: warning: implicit declaration of function 'Display_State_getMaxValue2Temp' [-Wimplicit-function-declaration]
-../src/EasyWeb_Ctrl/EasyWeb.c:250:8: warning: implicit declaration of function 'Light_Ctrl_Read' [-Wimplicit-function-declaration]
-../src/EasyWeb_Ctrl/EasyWeb.c:257:8: warning: implicit declaration of function 'Display_State_getMaxValue2Light' [-Wimplicit-function-declaration]
-Finished building: ../src/EasyWeb_Ctrl/EasyWeb.c
- 
-Building target: demo.axf
-Invoking: MCU Linker
-arm-none-eabi-gcc -nostdlib -L"D:\ProjetoLPC\Repositorio\EC020\Lib_CMSISv1p30_LPC17xx\Debug" -L"D:\ProjetoLPC\Repositorio\EC020\Lib_EaBaseBoard\Debug" -L"D:\ProjetoLPC\Repositorio\EC020\Lib_MCU\Debug" -Xlinker --gc-sections -Xlinker -Map=demo.map -mcpu=cortex-m3 -mthumb -T "demo_Debug.ld" -o "demo.axf"  ./src/Usart_Ctrl/Command/Command.o  ./src/Usart_Ctrl/Usart_Ctrl.o  ./src/System/Timer.o  ./src/EasyWeb_Ctrl/EasyWeb.o ./src/EasyWeb_Ctrl/ethmac.o ./src/EasyWeb_Ctrl/tcpip.o  ./src/Display_Ctrl/Temp_Ctrl/Temp_Ctrl.o  ./src/Display_Ctrl/Ssp_Ctrl/Ssp_Ctrl.o  ./src/Display_Ctrl/Oled_Ctrl/Fonte5x7.o ./src/Display_Ctrl/Oled_Ctrl/Oled_Ctrl.o  ./src/Display_Ctrl/Light_Ctrl/Light_Ctrl.o  ./src/Display_Ctrl/I2c_Ctrl/I2c_Ctrl.o  ./src/Display_Ctrl/Button_Ctrl/Button_Ctrl.o  ./src/Display_Ctrl/Display_Ctrl.o ./src/Display_Ctrl/Display_State.o  ./src/cr_startup_lpc17.o ./src/main.o   -lCMSISv1p30_LPC17xx -lLib_EaBaseBoard -lLib_MCU
-Finished building target: demo.axf
- 
-make --no-print-directory post-build
-Performing post-build steps
-arm-none-eabi-size demo.axf; # arm-none-eabi-objdump -h -S demo.axf >demo.lss
-   text	   data	    bss	    dec	    hex	filename
-  52620	   2188	   3648	  58456	   e458	demo.axf
- 
+make: Nothing to be done for `all'.
 
-15:06:13 Build Finished (took 1s.249ms)
+22:31:15 Build Finished (took 305ms)
 

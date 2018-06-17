@@ -9,9 +9,16 @@
 #define EASYWEB_H_
 
 #include "../Display_Ctrl/Display_State.h"
+#include "../Display_Ctrl/Temp_Ctrl/Temp_Ctrl.h"
+#include "../Display_Ctrl/Light_Ctrl/Light_Ctrl.h"
+#include "tcpip.h"
+#include "../Common.h"
+
+xQueueHandle Http_server_queue;
 
 void EasyWeb_Ctrl_Init();
 void EasyWeb_Ctrl_ProcessLoop();
+void EasyWeb_Ctrl_UpdaterTask();
 
 void start(void);
 void InitOsc(void);                              // prototypes

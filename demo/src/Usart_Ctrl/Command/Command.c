@@ -6,6 +6,7 @@
  */
 
 #include "Command.h"
+#include <stdlib.h>
 
 /*********************************************************
     private constants.
@@ -90,68 +91,71 @@ void command_Init(void)
 
 void command_ProcessLoop(void)
 {
-	switch (enumCommandState) {
-		case CMMD_WAIT: // se estiver em waitng
-			tagCommandsCtxt.uiCurrentCmndSize = getData((uint8_t*)tagCommandsCtxt.pcBuff); // lê a mensagem da uart
-			if(tagCommandsCtxt.uiCurrentCmndSize > 0 && tagCommandsCtxt.uiCurrentCmndSize < 512) // verifica se tem uma mensagem de tamanho válido
-			{
-				enumCommandState = CMMD_VALID; // seta o estado para válido
-			}
-			break;
+	while(1)
+	{
+		switch (enumCommandState) {
+			case CMMD_WAIT: // se estiver em waitng
+				tagCommandsCtxt.uiCurrentCmndSize = getData((uint8_t*)tagCommandsCtxt.pcBuff); // lê a mensagem da uart
+				if(tagCommandsCtxt.uiCurrentCmndSize > 0 && tagCommandsCtxt.uiCurrentCmndSize < 512) // verifica se tem uma mensagem de tamanho válido
+				{
+					enumCommandState = CMMD_VALID; // seta o estado para válido
+				}
+				break;
 
-		case CMMD_VALID: // Se o comando for valido
-			if( tagCommandsCtxt.uiCurrentCmndSize >= 4 ) // Se ele tiver mais que 4 caracteres
-			{
-				enumCommandState = CMMD_STRACT_DATA; // mudo o estado  para estrair data
-			}
-			else
-			{
-				enumCommandState = CMMD_WAIT; // muda o estado para waiting
-			}
-			break;
+			case CMMD_VALID: // Se o comando for valido
+				if( tagCommandsCtxt.uiCurrentCmndSize >= 4 ) // Se ele tiver mais que 4 caracteres
+				{
+					enumCommandState = CMMD_STRACT_DATA; // mudo o estado  para estrair data
+				}
+				else
+				{
+					enumCommandState = CMMD_WAIT; // muda o estado para waiting
+				}
+				break;
 
-		case CMMD_STRACT_DATA: // se o estado for estrarir data
-			// CC:PAYLOAD - > esse é o padrão do protocolo
+			case CMMD_STRACT_DATA: // se o estado for estrarir data
+				// CC:PAYLOAD - > esse é o padrão do protocolo
 
-			for(i=0;i<2;i++) // pegar o comando
-			{
-				aux[i] =tagCommandsCtxt.pcBuff[i];
-			}
-			tagCommandsCtxt.ucCurrentCommand = str2int((uint8_t*)aux); // passa o comando para inteiro
+				for(i=0;i<2;i++) // pegar o comando
+				{
+					aux[i] =tagCommandsCtxt.pcBuff[i];
+				}
+				tagCommandsCtxt.ucCurrentCommand = str2int((uint8_t*)aux); // passa o comando para inteiro
 
-			for(i=0;i<tagCommandsCtxt.uiCurrentCmndSize-2;i++) // pega o valor do payload
-			{
-				tagCommandsCtxt.pcBuff[i] = tagCommandsCtxt.pcBuff[i+3];
-			}
+				for(i=0;i<tagCommandsCtxt.uiCurrentCmndSize-2;i++) // pega o valor do payload
+				{
+					tagCommandsCtxt.pcBuff[i] = tagCommandsCtxt.pcBuff[i+3];
+				}
 
-			enumCommandState = CMMD_PARSE; // muda o estado para parse
-			break;
+				enumCommandState = CMMD_PARSE; // muda o estado para parse
+				break;
 
-		case CMMD_PARSE: // se o estado for parse
-			switch (tagCommandsCtxt.ucCurrentCommand)
-			{
-				case CMMD_MAX_TEMP: // se o comando for de temperatura
-					if(strlen(tagCommandsCtxt.pcBuff) > 0)
-					{
-						Display_State_setMaxValue2Temp(strtoul(tagCommandsCtxt.pcBuff, 0, 10)); // seta o valor máximo de temperatura para o progress bar da Web
+			case CMMD_PARSE: // se o estado for parse
+				switch (tagCommandsCtxt.ucCurrentCommand)
+				{
+					case CMMD_MAX_TEMP: // se o comando for de temperatura
+						if(strlen(tagCommandsCtxt.pcBuff) > 0)
+						{
+							Display_State_setMaxValue2Temp(strtoul(tagCommandsCtxt.pcBuff, 0, 10)); // seta o valor máximo de temperatura para o progress bar da Web
+							memset(tagCommandsCtxt.pcBuff,'\0',COMMANDS_MAX_BUFF_SIZE); // limpa o buffer
+						}
+						break;
+
+					case CMMD_MAX_LIGHT: // se o comando for de luz
+						Display_State_setMaxValue2Light(strtoul(tagCommandsCtxt.pcBuff, NULL, 10)); // seta o valor máximo em lumininosidade para o progress bar da Web
 						memset(tagCommandsCtxt.pcBuff,'\0',COMMANDS_MAX_BUFF_SIZE); // limpa o buffer
-					}
-					break;
+						break;
 
-				case CMMD_MAX_LIGHT: // se o comando for de luz
-					Display_State_setMaxValue2Light(strtoul(tagCommandsCtxt.pcBuff, NULL, 10)); // seta o valor máximo em lumininosidade para o progress bar da Web
-					memset(tagCommandsCtxt.pcBuff,'\0',COMMANDS_MAX_BUFF_SIZE); // limpa o buffer
-					break;
+					default:
+						break;
+				}
 
-				default:
-					break;
-			}
+				enumCommandState = CMMD_WAIT; // Muda o estado para wait
+				break;
 
-			enumCommandState = CMMD_WAIT; // Muda o estado para wait
-			break;
-
-		default:
-			break;
+			default:
+				break;
+		}
 	}
 }
 

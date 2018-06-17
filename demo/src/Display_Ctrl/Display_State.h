@@ -19,9 +19,13 @@ typedef enum enu_displayState
 	DISPLAY_STATE_MAX
 } tenu_displayState;
 
-void Display_State_Init(void);
-void Display_State_IncrementState(void);
-void Display_State_Set(tenu_displayState enuNewDisplayState);
-tenu_displayState Display_State_Get();
+void 				Display_State_Init(void);
+void 				Display_State_IncrementState(void);
+void 				Display_State_Set(tenu_displayState enuNewDisplayState);
+tenu_displayState 	Display_State_Get();
+void 				Display_State_setMaxValue2Temp(uint32_t temp);
+uint32_t		 	Display_State_getMaxValue2Temp();
+void 				Display_State_setMaxValue2Light(uint32_t light);
+uint32_t 			Display_State_getMaxValue2Light();
 
 #endif /* DISPLAY_STATE_H_ */

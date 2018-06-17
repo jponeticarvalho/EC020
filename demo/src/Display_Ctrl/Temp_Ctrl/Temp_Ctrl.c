@@ -16,7 +16,7 @@
  *****************************************************************************/
 
 #include "lpc17xx_gpio.h"
-#include "temp.h"
+#include "Temp_Ctrl.h"
 
 /******************************************************************************
  * Defines and typedefs
@@ -67,7 +67,7 @@
 /******************************************************************************
  * Local variables
  *****************************************************************************/
-
+static pvCallback tempCallback;
 static uint32_t (*getTicks)(void) = NULL;
 
 /******************************************************************************
@@ -144,4 +144,31 @@ int32_t Temp_Read (void)
 
 
     return ( (2*1000*t2) / (NUM_HALF_PERIODS*TEMP_SCALAR_DIV10) - 2731 );
+}
+
+void Temp_setCallback(pvCallback callback)
+{
+	if(callback != NULL)
+	{
+		tempCallback = callback;
+	}
+}
+
+void Temp_Task( void *pvParameters)
+{
+	ttagMessage tagMsg;
+
+	while(1)
+	{
+		memset(&tagMsg, 0x00, sizeof(tagMsg));
+		tagMsg.enuSource = SRC_TEMP;
+		tagMsg.ulPayload = (uint32_t)Temp_Read();
+
+		if(tempCallback != NULL)
+		{
+			tempCallback(tagMsg);
+		}
+
+		vTaskDelay(TEMP_SENSORS_READ_TIME);
+	}
 }

@@ -27,6 +27,7 @@
 *********************************************************/
 void Button_Ctrl_Init(void);
 Bool Button_Ctrl_GetValue(void);
-
+void Button_Ctrl_setCallback(pvCallback callback);
+void Button_Ctrl_Task( void *pvParameters);
 
 #endif /* BUTTON_CTRL_H_ */

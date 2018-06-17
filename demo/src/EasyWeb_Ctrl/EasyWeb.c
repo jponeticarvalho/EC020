@@ -47,6 +47,8 @@ const unsigned char GetResponse_EasyWeb[] =              // 1st thing our server
 // CodeRed - added for use in dynamic side of web page
 unsigned int aaPagecounter = 0;
 unsigned int adcValue = 0;
+uint32_t uiTempValue = 0;
+uint32_t uiLightValue = 0;
 
 void EasyWeb_Ctrl_Init(void) {
 	TCPLowLevelInit();
@@ -58,11 +60,37 @@ void EasyWeb_Ctrl_Init(void) {
 }
 
 void EasyWeb_Ctrl_ProcessLoop() {
-	if (!(SocketStatus & SOCK_ACTIVE))
-		TCPPassiveOpen();   // listen for incoming TCP-connection
-	DoNetworkStuff();                        // handle network and easyWEB-stack
-											 // events
-	HTTPServer();
+	while(1)
+	{
+		if (!(SocketStatus & SOCK_ACTIVE))
+			TCPPassiveOpen();   // listen for incoming TCP-connection
+		DoNetworkStuff();                        // handle network and easyWEB-stack
+												 // events
+		HTTPServer();
+		vTaskDelay(5);
+	}
+}
+
+void EasyWeb_Ctrl_UpdaterTask() {
+	ttagMessage tagMsg;
+	portTickType blockTime = 20/portTICK_RATE_MS;
+
+	while(1)
+	{
+		if(xQueueReceive(Http_server_queue, &tagMsg, blockTime) == pdTRUE)
+		{
+			switch (tagMsg.enuSource) {
+				case SRC_TEMP:
+					uiTempValue = tagMsg.ulPayload;
+					break;
+				case SRC_LIGHT:
+					uiLightValue = tagMsg.ulPayload;
+					break;
+				default:
+					break;
+			}
+		}
+	}
 }
 
 // This function implements a very simple dynamic HTTP-server.
@@ -232,13 +260,13 @@ void InsertDynamicValues(void) {
 					switch (*(Key + 2)) {
 						case '2':  // tolken da temperatura = AD2 -> vai para a tag <p class = 'lead'>AD2% ºC </p>
 						{
-							sprintf(NewKey, "%4.2f", Temp_Read()/10.0); // increment and insert page counter
+							sprintf(NewKey, "%4.2f", uiTempValue/10.0); // increment and insert page counter
 							memcpy(Key, NewKey, 4);
 							break;
 						}
 						case '3': // tolken da temperatura = AD3 -> vai para a porcentagem da tag do progrees bar <div class="progress"> <div class="progress-bar" role="progressbar" style="width: AD3%%" aria-valuenow="AD3%" aria-valuemin="0" aria-valuemax="100"></div></div>
 						{
-							float calc = Temp_Read();
+							float calc = uiTempValue;
 							calc = calc/Display_State_getMaxValue2Temp();
 							calc = calc * 10;
 							sprintf(NewKey, "%4.1f", calc);
@@ -247,18 +275,27 @@ void InsertDynamicValues(void) {
 						}
 						case '4': // tolken da temperatura = AD4 -> vai para a tag <p class = 'lead'>AD24% ºC </p>
 						{
-							sprintf(NewKey, "%04d", Light_Ctrl_Read()); // copy saved value from previous read
+							sprintf(NewKey, "%04d", (int)uiLightValue); // copy saved value from previous read
 							memcpy(Key, NewKey, 4);
 							break;
 						}
 						case '5': // tolken da luminosidade = AD5 -> vai para a porcentagem da tag do progrees bar <div class="progress"> <div class="progress-bar" role="progressbar" style="width: AD5%%" aria-valuenow="AD5%" aria-valuemin="0" aria-valuemax="100"></div></div>
 						{
-							float calc = (Light_Ctrl_Read()* 100);
+							float calc = (uiLightValue* 100);
 							calc = calc / Display_State_getMaxValue2Light();
 							sprintf(NewKey, "%4.1f", calc); // insert pseudo-ADconverter value
 							memcpy(Key, NewKey, strlen(NewKey));
 							break;
 						}
+						case '6': // temperatura máxima configurada pela uart
+							sprintf(NewKey, "%04d", (int)Display_State_getMaxValue2Temp()); // copy saved value from previous read
+							memcpy(Key, NewKey, 4);
+
+							break;
+						case '7': // luminosidade máxima configurada pela uart
+							sprintf(NewKey, "%04d", (int)Display_State_getMaxValue2Light()); // copy saved value from previous read
+							memcpy(Key, NewKey, 4);
+							break;
 					}
 		Key++;
 	}

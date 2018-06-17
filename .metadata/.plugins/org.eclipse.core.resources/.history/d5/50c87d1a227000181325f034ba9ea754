@@ -1,0 +1,38 @@
+/*
+ * Common.h
+ *
+ *  Created on: 03/04/2018
+ *      Author: jpone
+ */
+
+#ifndef COMMON_H_
+#define COMMON_H_
+
+#include "LPC17xx.h"
+#include "PinDefinition.h"
+#include "lpc_types.h"
+#include <stdio.h>
+#include <stdint.h>
+#include <string.h>
+
+#define BTN_SENSORS_READ_TIME 4
+#define TEMP_SENSORS_READ_TIME 5
+
+typedef enum enuSource
+{
+	SRC_TEMP,
+	SRC_LIGHT,
+	SRC_BUT,
+} tenuSource;
+
+typedef struct tagMessage
+{
+
+	tenuSource 	enuSource;
+	uint32_t	ulPayload;
+
+} ttagMessage;
+
+typedef void (*pvCallback)(ttagMessage tagMsg);
+
+#endif /* COMMON_H_ */

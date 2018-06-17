@@ -18,6 +18,7 @@ typedef enum enum_CommandState
 static tenum_CommandState enumCommandState;
 static uint32_t uiSensorValue = 0;
 volatile ttag_screenStrings tagScreenStrings;
+static uint8_t ucWaitDrawn = 0;
 
 void Display_Ctrl_Init(void)
 {
@@ -47,78 +48,99 @@ void Display_Ctrl_Init(void)
 
 void Display_Ctrl_ProcessLoop() // Máquina de estado para do display
 {
+	ttagMessage tagMsg;
+	portTickType blockTime = 20/portTICK_RATE_MS;
 
-	switch (enumCommandState) {
-		case CMMD_WAIT:
-			if(Button_Ctrl_GetValue() == FALSE) // Se eu apertar o botão ( o botão funciona em modo baixo ativo, por isso o FALSE)
-			{
-				Display_State_IncrementState(); // Mudo de estado
-			}
-			if(Display_State_Get() == DISPLAY_STATE_WAINTING) // Se o estado for Waiting
-			{
-				strncpy((char*)tagScreenStrings.screenString_Line1,(const char*)"---------------",strlen((char*)"---------------"));
-				strncpy((char*)tagScreenStrings.screenString_Line2,(const char*)"|    EC020:   |",strlen((char*)"|    EC020:   |"));
-				strncpy((char*)tagScreenStrings.screenString_Line3,(const char*)"|Fer Avelar,  |",strlen((char*)"|Fer Avelar,  |"));
-				strncpy((char*)tagScreenStrings.screenString_Line4,(const char*)"|Joao Pedro,  |",strlen((char*)"|Joao Pedro,  |"));
-				strncpy((char*)tagScreenStrings.screenString_Line5,(const char*)"|Karla Carmo, |",strlen((char*)"|Karla Carmo, |"));
-				strncpy((char*)tagScreenStrings.screenString_Line6,(const char*)"|Lucas Gaspar.|",strlen((char*)"|Lucas Gaspar.|"));
-				strncpy((char*)tagScreenStrings.screenString_Line7,(const char*)"---------------",strlen((char*)"---------------"));
+	while(1)
+	{
+		switch (enumCommandState) {
+			case CMMD_WAIT:
+				if(Display_State_Get() == DISPLAY_STATE_WAINTING) // Se o estado for Waiting
+				{
+					if(ucWaitDrawn == 0)
+					{
+						strncpy((char*)tagScreenStrings.screenString_Line1,(const char*)"---------------", 15);
+						strncpy((char*)tagScreenStrings.screenString_Line2,(const char*)"|    EC020:   |", 15);
+						strncpy((char*)tagScreenStrings.screenString_Line3,(const char*)"|Fer Avelar,  |", 15);
+						strncpy((char*)tagScreenStrings.screenString_Line4,(const char*)"|Joao Pedro,  |", 15);
+						strncpy((char*)tagScreenStrings.screenString_Line5,(const char*)"|Karla Carmo, |", 15);
+						strncpy((char*)tagScreenStrings.screenString_Line6,(const char*)"|Lucas Gaspar.|", 15);
+						strncpy((char*)tagScreenStrings.screenString_Line7,(const char*)"---------------", 15);
 
-				Oled_Ctrl_PutScreen(tagScreenStrings, OLED_COLOR_WHITE, OLED_COLOR_BLACK); // Desenha os nomes
-			}
-			else // Se o estado não for waiting
-				enumCommandState = CMMD_READING; // muda o estado para reading
-			break;
+						vPortEnterCritical();
+						Oled_Ctrl_PutScreen(tagScreenStrings, OLED_COLOR_WHITE, OLED_COLOR_BLACK); // Desenha os nomes
+						vPortExitCritical();
 
-		case CMMD_READING:
-			if(Display_State_Get() == DISPLAY_STATE_LIGHT) // Se o estado da tela for light
-			{
-				uiSensorValue = Light_Ctrl_Read(); // Leio o sensor de luminosidade
-				enumCommandState = CMMD_WRITELIGHT; // Mudo o estado do display para escrever a lumunisidade
-			}
-			else if(Display_State_Get() == DISPLAY_STATE_TEMP)// Se o estado da tela for temp
-			{
-				uiSensorValue = Temp_Read();// Leio o sensor de temperatura
-				enumCommandState = CMMD_WRITETEMP;// mudo o estado do display para escrever temperatura
-			}
-			else // se não estiver em nenhum desses estados
-			{
-				enumCommandState = CMMD_WAIT; // muda para waiting
-			}
-			break;
+						ucWaitDrawn = 1;
+					}
+				}
+				else // Se o estado não for waiting
+				{
+					enumCommandState = CMMD_READING; // muda o estado para reading
+					ucWaitDrawn = 0;
+				}
+				break;
 
-		case CMMD_WRITELIGHT:  // estado write light
+			case CMMD_READING:
+				if(xQueueReceive(Display_Ctrl_queue, &tagMsg, blockTime) == pdTRUE)
+				{
+					uiSensorValue = tagMsg.ulPayload;
+					if(Display_State_Get() == DISPLAY_STATE_LIGHT) // Se o estado da tela for light
+					{
+						enumCommandState = CMMD_WRITELIGHT; // Mudo o estado do display para escrever a lumunisidade
+					}
+					else if(Display_State_Get() == DISPLAY_STATE_TEMP)// Se o estado da tela for temp
+					{
+						enumCommandState = CMMD_WRITETEMP;// mudo o estado do display para escrever temperatura
+					}
+					else // se não estiver em nenhum desses estados
+					{
+						enumCommandState = CMMD_WAIT; // muda para waiting
+					}
+				}
+				if(Display_State_Get() == DISPLAY_STATE_WAINTING)
+				{
+					enumCommandState = CMMD_WAIT;
+				}
+				break;
 
-			strncpy((char*)tagScreenStrings.screenString_Line1,(const char*)"---------------",strlen((char*)"---------------"));
-			strncpy((char*)tagScreenStrings.screenString_Line2,(const char*)"|             |",strlen((char*)"|    EC020:   |"));
-			strncpy((char*)tagScreenStrings.screenString_Line3,(const char*)"|    Lumens   |",strlen((char*)"|Fer Avelar,  |"));
-			strncpy((char*)tagScreenStrings.screenString_Line4,(const char*)"|      =      |",strlen((char*)"|Joao Pedro,  |"));
-			sprintf((char*)tagScreenStrings.screenString_Line5,"|    %05d    |",(int)uiSensorValue); // coloca o valor com 5 casas do sensor de luminosidade na tela
-			strncpy((char*)tagScreenStrings.screenString_Line6,(const char*)"|             |",strlen((char*)"|Lucas Gaspar.|"));
-			strncpy((char*)tagScreenStrings.screenString_Line7,(const char*)"---------------",strlen((char*)"---------------"));
+			case CMMD_WRITELIGHT:  // estado write light
 
-			Oled_Ctrl_PutScreen(tagScreenStrings, OLED_COLOR_WHITE, OLED_COLOR_BLACK); // desenha a string com a lumininosidade no display
+				strncpy((char*)tagScreenStrings.screenString_Line1,(const char*)"---------------", 15);
+				strncpy((char*)tagScreenStrings.screenString_Line2,(const char*)"|             |", 15);
+				strncpy((char*)tagScreenStrings.screenString_Line3,(const char*)"|    Lumens   |", 15);
+				strncpy((char*)tagScreenStrings.screenString_Line4,(const char*)"|      =      |", 15);
+				sprintf((char*)tagScreenStrings.screenString_Line5,"|    %05d    |",(int)uiSensorValue); // coloca o valor com 5 casas do sensor de luminosidade na tela
+				strncpy((char*)tagScreenStrings.screenString_Line6,(const char*)"|             |", 15);
+				strncpy((char*)tagScreenStrings.screenString_Line7,(const char*)"---------------", 15);
 
-			enumCommandState = CMMD_WAIT;// muda o state para waiting
+				vPortEnterCritical();
+				Oled_Ctrl_PutScreen(tagScreenStrings, OLED_COLOR_WHITE, OLED_COLOR_BLACK); // desenha a string com a lumininosidade no display
+				vPortExitCritical();
 
-			break;
+				enumCommandState = CMMD_WAIT;// muda o state para waiting
 
-		case CMMD_WRITETEMP: //estado write temperatura
+				break;
 
-			strncpy((char*)tagScreenStrings.screenString_Line1,(const char*)"---------------",strlen((char*)"---------------"));
-			strncpy((char*)tagScreenStrings.screenString_Line2,(const char*)"|             |",strlen((char*)"|    EC020:   |"));
-			strncpy((char*)tagScreenStrings.screenString_Line3,(const char*)"| Temperatura |",strlen((char*)"|Fer Avelar,  |"));
-			strncpy((char*)tagScreenStrings.screenString_Line4,(const char*)"|      =      |",strlen((char*)"|Joao Pedro,  |"));
-			sprintf((char*)tagScreenStrings.screenString_Line5, "|    %5.2f    |",(float)uiSensorValue/10.0); // escreve o valor da temperatura na tela
-			strncpy((char*)tagScreenStrings.screenString_Line6,(const char*)"|             |",strlen((char*)"|Lucas Gaspar.|"));
-			strncpy((char*)tagScreenStrings.screenString_Line7,(const char*)"---------------",strlen((char*)"---------------"));
+			case CMMD_WRITETEMP: //estado write temperatura
 
-			Oled_Ctrl_PutScreen(tagScreenStrings, OLED_COLOR_WHITE, OLED_COLOR_BLACK); //desenha a string com a temperatura na tela
+				strncpy((char*)tagScreenStrings.screenString_Line1,(const char*)"---------------", 15);
+				strncpy((char*)tagScreenStrings.screenString_Line2,(const char*)"|             |", 15);
+				strncpy((char*)tagScreenStrings.screenString_Line3,(const char*)"| Temperatura |", 15);
+				strncpy((char*)tagScreenStrings.screenString_Line4,(const char*)"|      =      |", 15);
+				sprintf((char*)tagScreenStrings.screenString_Line5, "|    %5.2f    |",(float)uiSensorValue/10.0); // escreve o valor da temperatura na tela
+				strncpy((char*)tagScreenStrings.screenString_Line6,(const char*)"|             |", 15);
+				strncpy((char*)tagScreenStrings.screenString_Line7,(const char*)"---------------", 15);
 
-			enumCommandState = CMMD_WAIT; // muda o state para waiting
+				vPortEnterCritical();
+				Oled_Ctrl_PutScreen(tagScreenStrings, OLED_COLOR_WHITE, OLED_COLOR_BLACK); //desenha a string com a temperatura na tela
+				vPortExitCritical();
 
-			break;
+				enumCommandState = CMMD_WAIT; // muda o state para waiting
 
+				break;
+
+		}
+		vTaskDelay(400/portTICK_RATE_MS);
 	}
-
 }

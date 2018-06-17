@@ -208,7 +208,7 @@ static void hLine(uint8_t x0, uint8_t y0, uint8_t x1, oled_color_t color)
 
     while(x1 >= x0)
     {
-        oled_putPixel(x0, y0, color);
+    	Oled_Ctrl_PutPixel(x0, y0, color);
         x0++;
     }
 }
@@ -238,7 +238,7 @@ static void vLine(uint8_t x0, uint8_t y0, uint8_t y1, oled_color_t color)
 
     while(y1 >= y0)
     {
-        oled_putPixel(x0, y0, color);
+    	Oled_Ctrl_PutPixel(x0, y0, color);
         y0++;
     }
     return;
@@ -408,7 +408,7 @@ void Oled_Ctrl_Line(uint8_t x0, uint8_t y0, uint8_t x1, uint8_t y1, oled_color_t
         while(x0 != x1)
         {
 
-            oled_putPixel(x0, y0, color);
+        	Oled_Ctrl_PutPixel(x0, y0, color);
             x0 += dx_sym;
             if(di<0)
             {
@@ -420,14 +420,14 @@ void Oled_Ctrl_Line(uint8_t x0, uint8_t y0, uint8_t x1, uint8_t y1, oled_color_t
                 y0 += dy_sym;
             }
         }
-        oled_putPixel(x0, y0, color);
+        Oled_Ctrl_PutPixel(x0, y0, color);
     }
     else
     {
         di = dx_x2 - dy;
         while(y0 != y1)
         {
-            oled_putPixel(x0, y0, color);
+        	Oled_Ctrl_PutPixel(x0, y0, color);
             y0 += dy_sym;
             if(di < 0)
             {
@@ -439,7 +439,7 @@ void Oled_Ctrl_Line(uint8_t x0, uint8_t y0, uint8_t x1, uint8_t y1, oled_color_t
                 x0 += dx_sym;
             }
         }
-        oled_putPixel(x0, y0, color);
+        Oled_Ctrl_PutPixel(x0, y0, color);
     }
     return;
 }
@@ -478,28 +478,28 @@ void Oled_Ctrl_Circle(uint8_t x0, uint8_t y0, uint8_t r, oled_color_t color)
     draw_y0 = draw_y1 = y0 + r;
     if(draw_y0 < OLED_DISPLAY_HEIGHT)
     {
-        oled_putPixel(draw_x0, draw_y0, color);     /* 90 degree */
+    	Oled_Ctrl_PutPixel(draw_x0, draw_y0, color);     /* 90 degree */
     }
 
     draw_x2 = draw_x3 = x0;
     draw_y2 = draw_y3 = y0 - r;
     if(draw_y2 >= 0)
     {
-        oled_putPixel(draw_x2, draw_y2, color);    /* 270 degree */
+    	Oled_Ctrl_PutPixel(draw_x2, draw_y2, color);    /* 270 degree */
     }
 
     draw_x4 = draw_x6 = x0 + r;
     draw_y4 = draw_y6 = y0;
     if(draw_x4 < OLED_DISPLAY_WIDTH)
     {
-        oled_putPixel(draw_x4, draw_y4, color);     /* 0 degree */
+    	Oled_Ctrl_PutPixel(draw_x4, draw_y4, color);     /* 0 degree */
     }
 
     draw_x5 = draw_x7 = x0 - r;
     draw_y5 = draw_y7 = y0;
     if(draw_x5>=0)
     {
-        oled_putPixel(draw_x5, draw_y5, color);     /* 180 degree */
+    	Oled_Ctrl_PutPixel(draw_x5, draw_y5, color);     /* 180 degree */
     }
 
     if(r == 1)
@@ -542,40 +542,40 @@ void Oled_Ctrl_Circle(uint8_t x0, uint8_t y0, uint8_t r, oled_color_t color)
 
         if( (draw_x0 <= OLED_DISPLAY_WIDTH) && (draw_y0>=0) )
         {
-            oled_putPixel(draw_x0, draw_y0, color);
+        	Oled_Ctrl_PutPixel(draw_x0, draw_y0, color);
         }
 
         if( (draw_x1 >= 0) && (draw_y1 >= 0) )
         {
-            oled_putPixel(draw_x1, draw_y1, color);
+        	Oled_Ctrl_PutPixel(draw_x1, draw_y1, color);
         }
 
         if( (draw_x2 <= OLED_DISPLAY_WIDTH) && (draw_y2 <= OLED_DISPLAY_HEIGHT) )
         {
-            oled_putPixel(draw_x2, draw_y2, color);
+        	Oled_Ctrl_PutPixel(draw_x2, draw_y2, color);
         }
 
         if( (draw_x3 >=0 ) && (draw_y3 <= OLED_DISPLAY_HEIGHT) )
         {
-            oled_putPixel(draw_x3, draw_y3, color);
+        	Oled_Ctrl_PutPixel(draw_x3, draw_y3, color);
         }
 
         if( (draw_x4 <= /*OLED_DISPLAY_HEIGHT*/OLED_DISPLAY_WIDTH) && (draw_y4 >= 0) )
         {
-            oled_putPixel(draw_x4, draw_y4, color);
+        	Oled_Ctrl_PutPixel(draw_x4, draw_y4, color);
         }
 
         if( (draw_x5 >= 0) && (draw_y5 >= 0) )
         {
-            oled_putPixel(draw_x5, draw_y5, color);
+        	Oled_Ctrl_PutPixel(draw_x5, draw_y5, color);
         }
         if( (draw_x6 <= OLED_DISPLAY_WIDTH) && (draw_y6 <= OLED_DISPLAY_HEIGHT) )
         {
-            oled_putPixel(draw_x6, draw_y6, color);
+        	Oled_Ctrl_PutPixel(draw_x6, draw_y6, color);
         }
         if( (draw_x7 >= 0) && (draw_y7 <= OLED_DISPLAY_HEIGHT) )
         {
-            oled_putPixel(draw_x7, draw_y7, color);
+        	Oled_Ctrl_PutPixel(draw_x7, draw_y7, color);
         }
     }
     return;
@@ -710,7 +710,7 @@ uint8_t Oled_Ctrl_PutChar(uint8_t x, uint8_t y, uint8_t ch, oled_color_t fb, ole
             {
                 color = fb;
             }
-            oled_putPixel(x, y, color);
+            Oled_Ctrl_PutPixel(x, y, color);
             x++;
         }
         y++;
@@ -728,7 +728,7 @@ void Oled_Ctrl_PutString(uint8_t x, uint8_t y, uint8_t *pStr, oled_color_t fb,
       {
           break;
       }
-      if( oled_putChar(x, y, *pStr++, fb, bg) == 0 )
+      if( Oled_Ctrl_PutChar(x, y, *pStr++, fb, bg) == 0 )
       {
         break;
     }

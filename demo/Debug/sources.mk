@@ -17,7 +17,6 @@ SUBDIRS := \
 src \
 src/Usart_Ctrl \
 src/Usart_Ctrl/Command \
-src/System \
 src/EasyWeb_Ctrl \
 src/Display_Ctrl/Temp_Ctrl \
 src/Display_Ctrl/Ssp_Ctrl \

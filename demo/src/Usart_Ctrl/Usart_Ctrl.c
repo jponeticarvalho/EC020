@@ -130,8 +130,6 @@ void Usart_Ctrl_SendData(LPC_UART_TypeDef* UARTx, uint8_t *pucData, uint32_t uiD
 
 	if(!pucData) return;
 
-	uint32_t uiCounter = 0;
-
 	UART_Send(USARTx, pucData, uiDataLen, NONE_BLOCKING);
 
 }

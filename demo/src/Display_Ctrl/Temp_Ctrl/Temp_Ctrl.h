@@ -8,10 +8,13 @@
 #ifndef __TEMP_H
 #define __TEMP_H
 
+//#include "task.h"
+#include "../../Common.h"
 
 void Temp_Init (uint32_t (*getMsTick)(void));
 int32_t Temp_Read(void);
-
+void Temp_setCallback(pvCallback callback);
+void Temp_Task( void *pvParameters);
 
 #endif /* end __TEMP_H */
 /****************************************************************************
