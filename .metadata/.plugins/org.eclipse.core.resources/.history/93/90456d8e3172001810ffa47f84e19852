@@ -273,7 +273,7 @@ void InsertDynamicValues(void) {
 							memcpy(Key, NewKey, strlen(NewKey));
 							break;
 						}
-						case '4': // tolken da luminosidade = AD4 -> vai para a tag <p class = 'lead'>AD4% L </p>
+						case '4': // tolken da luminosidade = AD4 -> vai para a tag <p class = 'lead'>AD4% ºC </p>
 						{
 							sprintf(NewKey, "%04d", (int)uiLightValue); // copy saved value from previous read
 							memcpy(Key, NewKey, 4);

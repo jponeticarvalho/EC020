@@ -21,7 +21,7 @@
 /*********************************************************
     private variable.
 *********************************************************/
-static pvCallback buttonCallback = NULL;
+static pvCallback buttonCallback;
 
 /*********************************************************
     private functions prototypes.

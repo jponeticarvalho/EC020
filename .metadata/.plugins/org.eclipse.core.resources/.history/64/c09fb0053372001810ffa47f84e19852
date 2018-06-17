@@ -117,6 +117,7 @@ void mqttUpdaterTask(void* pvParameters)
 {
 	ttagMessage tagMsg;
 	uint8_t ucBuffer;
+
 	while(1)
 	{
 		if(xQueueReceive(Mqtt_queue, &tagMsg, 15) == pdTRUE)
@@ -135,6 +136,7 @@ void mqttUpdaterTask(void* pvParameters)
 			}
 		}
 	}
+
 }
 
 //Parte obrigatoria para o FreeRtos

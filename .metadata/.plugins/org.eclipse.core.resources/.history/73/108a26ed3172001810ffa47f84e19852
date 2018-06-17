@@ -37,7 +37,6 @@ int main (void)
 
 	Display_Ctrl_queue = xQueueCreate(8, sizeof(ttagMessage));
 	Http_server_queue  = xQueueCreate(10, sizeof(ttagMessage));
-	Mqtt_queue 		   = xQueueCreate(10, sizeof(ttagMessage));
 
 	xTaskCreate(Display_Ctrl_ProcessLoop, "DisplayLoop", 360, NULL, 1, NULL);
 	xTaskCreate(command_ProcessLoop, "CommandLoop", 240, NULL, 1, NULL);
@@ -94,7 +93,6 @@ void tempCallback(ttagMessage tagMsg)
 	if(tagMsg.enuSource == SRC_TEMP)
 	{
 		xQueueSendToBack(Http_server_queue, &tagMsg, 15);
-		xQueueSendToBack(Mqtt_queue, &tagMsg, 15);
 
 		if(Display_State_Get() == DISPLAY_STATE_TEMP)
 			xQueueSendToBack(Display_Ctrl_queue, &tagMsg, 15);
@@ -106,34 +104,9 @@ void lightCallback(ttagMessage tagMsg)
 	if(tagMsg.enuSource == SRC_LIGHT)
 	{
 		xQueueSendToBack(Http_server_queue, &tagMsg, 15);
-		xQueueSendToBack(Mqtt_queue, &tagMsg, 15);
 
 		if(Display_State_Get() == DISPLAY_STATE_LIGHT)
 			xQueueSendToBack(Display_Ctrl_queue, &tagMsg, 15);
-	}
-}
-
-void mqttUpdaterTask(void* pvParameters)
-{
-	ttagMessage tagMsg;
-	uint8_t ucBuffer;
-	while(1)
-	{
-		if(xQueueReceive(Mqtt_queue, &tagMsg, 15) == pdTRUE)
-		{
-			switch (tagMsg.enuSource) {
-				case SRC_LIGHT:
-					sprintf(ucBuffer, "L/%d\n", (int)tagMsg.ulPayload);
-					Usart_Ctrl_SendData(USARTx, ucBuffer, strlen(ucBuffer));
-					break;
-				case SRC_TEMP:
-					sprintf(ucBuffer, "T/%lf\n", (double)tagMsg.ulPayload/10.0);
-					Usart_Ctrl_SendData(USARTx, ucBuffer, strlen(ucBuffer));
-					break;
-				default:
-					break;
-			}
-		}
 	}
 }
 

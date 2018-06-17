@@ -113,30 +113,6 @@ void lightCallback(ttagMessage tagMsg)
 	}
 }
 
-void mqttUpdaterTask(void* pvParameters)
-{
-	ttagMessage tagMsg;
-	uint8_t ucBuffer;
-	while(1)
-	{
-		if(xQueueReceive(Mqtt_queue, &tagMsg, 15) == pdTRUE)
-		{
-			switch (tagMsg.enuSource) {
-				case SRC_LIGHT:
-					sprintf(ucBuffer, "L/%d\n", (int)tagMsg.ulPayload);
-					Usart_Ctrl_SendData(USARTx, ucBuffer, strlen(ucBuffer));
-					break;
-				case SRC_TEMP:
-					sprintf(ucBuffer, "T/%lf\n", (double)tagMsg.ulPayload/10.0);
-					Usart_Ctrl_SendData(USARTx, ucBuffer, strlen(ucBuffer));
-					break;
-				default:
-					break;
-			}
-		}
-	}
-}
-
 //Parte obrigatoria para o FreeRtos
 
 /*-----------------------------------------------------------*/
